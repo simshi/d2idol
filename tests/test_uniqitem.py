@@ -14,7 +14,6 @@ class TestUniqItem(unittest.TestCase):
 	def test_amu_of_rixots_keen(self):
 		item = UniqItem("amu ", 25) # Rixot's
 
-		# item.addProp(91)
 		item.addPropGroup("characteristic")
 		item.addPropGroup("mf")
 		item.addPropGroup("defense")
@@ -138,4 +137,24 @@ class TestUniqItem(unittest.TestCase):
 		self.assertEquals("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]javelin.d2i"), "wb") as f:
+			self.s.writeBytes(f)
+
+	def test_claw_of_Pluckeye(self):
+		item = UniqItem("skr ", 25)
+		item.addProp(91, 0); # requirment 0-100%
+
+		item.addPropGroup("basicoffense")
+		item.addProp(21); # +(6bits) min 1 hand dmg
+		item.addProp(22); # +(7bits) max 1 hand dmg
+		item.addProp(218) #+%d to Maximum Damage (Based on Character Level)
+		item.addProp(219) #%d%% Enhanced Maximum Damage (Based on Character Level)
+
+		# cast level X "Chain Lightning(53)" chance Y on striking"
+		item.addProp(198, 0xffff, 53, 0xffff)
+
+
+		item.writeStream(self.s)
+		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+
+		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]claw.d2i"), "wb") as f:
 			self.s.writeBytes(f)

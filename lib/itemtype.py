@@ -733,7 +733,7 @@ def createByCode(code):
 # print max(l, key=lambda x:x["2hmaxdam"])
 
 # l = [dict([(kk,v) for kk,v in chain(_weaponDict[k].items(), [("code", k)])]) for k in _weaponDict]
-# l = filter(lambda x:x["type"]=="jave" and x["reqlevel"]==0, l)
+# l = filter(lambda x:x["type"]=="h2h" and x["reqlevel"]<15, l)
 # print max(l, key=lambda x:x["maxdam"])
 # print sorted(l, key=lambda x:x["maxdam"])[-3:]
 

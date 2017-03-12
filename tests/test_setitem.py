@@ -113,6 +113,7 @@ class TestSetItem(unittest.TestCase):
 
 	def test_CleglawsTooth_sword(self):
 		item = SetItem("lsd ", 0x6)
+		item.addProp(91, 0); # requirment 0-100%
 
 		item.addPropGroup("basicoffense")
 		item.addProp(21); # +(6bits) min 1 hand dmg
@@ -170,12 +171,54 @@ class TestSetItem(unittest.TestCase):
 		item.addProp(150) # Slows Target by x%
 
 
-		item.addSetProp(0, 141) #+x% Deadly Strike
-		item.addSetProp(0, 250) #+x% to Deadly Strike (Based on Character Level)
+		item.addSetProp(0, 218) #+%d to Maximum Damage (Based on Character Level)
+		item.addSetProp(0, 219) #%d%% Enhanced Maximum Damage (Based on Character Level)
 
 		item.writeStream(self.s)
 		self.assertEquals("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cleglaws_pincers_glove.d2i"), "wb") as f:
+			self.s.writeBytes(f)
+
+	def test_CowKings_leather(self):
+		item = SetItem("stu ", 0x76)
+
+		item.addPropGroup("characteristic")
+		item.addPropGroup("basicdefense")
+		# item.addPropGroup("mf")
+		# cast level X "Poison Nova(92)" chance Y on struck"
+		item.addProp(201, 0xFFFF, 92, 0xFFFF)
+		item.addProp(126, 3, 0xff) # Poision(3) Skills +x
+		# aura when equipped (151), Holy Fire(102), level (+31)
+		item.addProp(151, 102, 0xFF)
+
+		item.addProp(39)
+		item.addProp(41)
+		item.addProp(43)
+		item.addProp(45)
+
+
+		item.writeStream(self.s)
+		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+
+		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cowkings_leather.d2i"), "wb") as f:
+			self.s.writeBytes(f)
+
+	def test_CowKings_hat(self):
+		item = SetItem("xap ", 0x75)
+
+		item.addPropGroup("basicdefense")
+		item.addPropGroup("mf")
+
+		# aura when equipped (151), Holy Shock(118), level (+31)
+		item.addProp(151, 118, 0xFF)
+		# cast level X "Static Field (42)" chance Y on striking"
+		item.addProp(198, 0xffff, 42, 0xffff)
+		item.addProp(126, 2, 0xff) # Lightning(2) Skills +x
+
+		item.writeStream(self.s)
+		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+
+		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cowkings_hat.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
