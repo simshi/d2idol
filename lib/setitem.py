@@ -52,4 +52,5 @@ class SetItem:
 		self.props.writeStream(stream)
 
 		for p in self.setProps:
-			p.writeStream(stream)
+			if len(p) > 0:
+				p.writeStream(stream)

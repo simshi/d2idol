@@ -353,7 +353,7 @@ _propGroups = {
 		0, 1, 2, 3,
 		7, #+%d to Life
 		9, #+%d to Mana
-		11, #+%d to Maximum Stamina
+		# 11, #+%d to Maximum Stamina
 		76, #Max life +x%
 		# 127, # +7 (3 bits) to All Skill Level
 	], "mf": [
