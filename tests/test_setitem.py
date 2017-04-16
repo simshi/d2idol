@@ -238,12 +238,78 @@ class TestSetItem(unittest.TestCase):
 			self.s.writeBytes(f)
 
 	# Assassin
+	def test_Natalya_helm(self):
+		item = SetItem("xh9 ", 0x3e)
+
+		item.addProp(35) # Magic Damage Reduced by %d
+		# aura when equipped (151), Holy Shock(118), level (+31)
+		item.addProp(151, 118, 0xFF)
+		# cast level X "Static Field (42)" chance Y on striking"
+		item.addProp(198, 0xffff, 42, 0xffff)
+		item.addProp(330) # +%d to Lightning Skill Damage
+
+		# set item prop slot MUST follow game setting strictly!!!
+
+
+		item.writeStream(self.s)
+		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+
+		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]natalya_helm.d2i"), "wb") as f:
+			self.s.writeBytes(f)
+
+	def test_Natalya_scissors(self):
+		item = SetItem("7qr ", 0x3f)
+
+		item.addPropGroup("basicoffense")
+		item.addProp(21); # +(6bits) min 1 hand dmg
+		item.addProp(22); # +(7bits) max 1 hand dmg
+		item.addProp(218) #+%d to Maximum Damage (Based on Character Level)
+		item.addProp(219) #%d%% Enhanced Maximum Damage (Based on Character Level)
+
+		# cast level X "Chain Lightning(53)" chance Y on striking"
+		item.addProp(198, 0xffff, 53, 0xffff)
+		item.addProp(330) # +%d to Lightning Skill Damage
+
+		item.addProp(188, 50, 0xff) #Skills set X (24-ASS/MartialArt) +%d
+
+		item.writeStream(self.s)
+		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+
+		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]natalya_scissors.d2i"), "wb") as f:
+			self.s.writeBytes(f)
+
+	def test_Natalya_armor(self):
+		item = SetItem("ucl ", 0x40)
+
+		# item.addPropGroup("characteristic")
+		item.addPropGroup("basicdefense")
+		# item.addPropGroup("mf")
+		# cast level X "Poison Nova(92)" chance Y on struck"
+		item.addProp(201, 0xFFFF, 92, 0xFFFF)
+		# aura when equipped (151), Holy Fire(102), level (+31)
+		item.addProp(151, 102, 0xFF)
+		item.addProp(329) # x% to Fire Skill Damage
+		item.addProp(332) # +%d to Poison Skill Damage
+		item.addProp(188, 49, 0xff) #Skills set X (49-ASS/ShadowDiscipline) +%d
+
+		item.addProp(39)
+		item.addProp(41)
+		item.addProp(43)
+		item.addProp(45)
+		# set item prop slot MUST follow game setting strictly!!!
+
+		item.writeStream(self.s)
+		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+
+		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]natalya_armor.d2i"), "wb") as f:
+			self.s.writeBytes(f)
+
 	def test_Natalya_boots(self):
 		item = SetItem("xmb ", 0x41)
 
 		item.addProp(67) # Faster Run/Walk
 		item.addProp(137) # Kick Damage
-		item.addProp(249) # Kick Damage Kick Damage (Based on Character Level)
+		item.addProp(249) # Kick Damage (Based on Character Level)
 		item.addPropGroup("basicdefense")
 		item.addPropGroup("mf")
 
