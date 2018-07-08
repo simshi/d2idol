@@ -11,7 +11,7 @@ class MemStream():
 
 	def __str__(self):
 		r = []
-		for i in xrange(0, len(self._v), 8):
+		for i in range(0, len(self._v), 8):
 			bits = self._v[i:i+8][::-1]
 			r.append(int(bits, 2))
 
@@ -34,7 +34,7 @@ class TestEarItem(unittest.TestCase):
 		self.item = EarItem("Simon")
 		self.item.writeStream(self.s)
 		b = self.s.getByteList()
-		self.assertEquals("JM\x10\x00\xa1", ''.join(map(chr, b[:5])))
+		self.assertEqual("JM\x10\x00\xa1", ''.join(map(chr, b[:5])))
 
 		with open(os.path.join(FILE_ROOT_DIR, "[Ear]Simon.d2i"), "wb") as f:
 			self.s.writeBytes(f)

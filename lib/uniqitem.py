@@ -1,6 +1,6 @@
-import itemtype
-import quality
-from itemprops import ItemProps
+from .import itemtype
+from .import quality
+from .itemprops import ItemProps
 
 class UniqItem:
 	def __init__(self, code="amu ", uniqId=25):

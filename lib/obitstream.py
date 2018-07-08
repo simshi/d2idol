@@ -12,7 +12,7 @@ class OBitStream():
 	def getByteList(self):
 		# self._v.chunk(8).map(reversed).map(int(_, 2))
 		def chunk(s, n):
-			return [s[i:i+8] for i in xrange(0, len(self._v), n)]
+			return [s[i:i+8] for i in range(0, len(self._v), n)]
 
 		return [int(bits[::-1], 2) for bits in chunk(self._v, 8)]
 

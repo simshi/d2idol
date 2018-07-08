@@ -1,6 +1,6 @@
-from itembase import ItemBase
-import quality
-from itemprops import ItemProps
+from .itembase import ItemBase
+from . import quality
+from .itemprops import ItemProps
 
 class Charm():
 	def __init__(self, code="cm1 ", wSuffix=0x115):

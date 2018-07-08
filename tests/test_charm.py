@@ -22,7 +22,7 @@ class TestCharm(unittest.TestCase):
 		item.addProp(240); # (6 bits) Better Chance of Getting Magic Items (Based on Character Level)
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 00 80 00 65", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 00 80 00 65", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[Charm]of_greed.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -47,7 +47,7 @@ class TestCharm(unittest.TestCase):
 		item.addProp(198, 0xffff, 91, 0xffff)
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 00 80 00 65", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 00 80 00 65", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[Charm]of_skill_aura_conviction.d2i"), "wb") as f:
 			self.s.writeBytes(f)

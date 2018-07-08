@@ -1,4 +1,4 @@
-from itembase import ItemBase
+from .itembase import ItemBase
 
 class EarItem():
 	def __init__(self, name, iClass = 1, iLevel = 62):

@@ -20,8 +20,8 @@ class TestUniqItem(unittest.TestCase):
 
 		item.writeStream(self.s)
 		result = str(self.s)
-		self.assertEquals("1", result[20])
-		self.assertEquals("4a 4d 10 00 80 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("1", result[20])
+		self.assertEqual("4a 4d 10 00 80 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]amulet_of_rixots_keen.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -33,7 +33,7 @@ class TestUniqItem(unittest.TestCase):
 		item.addProp(127); # +7 (3 bits) to All Skill Level
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 00 80 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 00 80 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]ring_of_nagelring.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -49,7 +49,7 @@ class TestUniqItem(unittest.TestCase):
 		item.addProp(201, 0xFFFF, 92, 0xFFFF)
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]tors_of_blinkbats_form.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -70,7 +70,7 @@ class TestUniqItem(unittest.TestCase):
 		item.addProp(198, 0xffff, 56, 0xffff)
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]pole_of_soulharvest.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -90,7 +90,7 @@ class TestUniqItem(unittest.TestCase):
 		item.addProp(198, 0xffff, 56, 0xffff)
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]bow_of_kKukoShakaku.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -112,7 +112,7 @@ class TestUniqItem(unittest.TestCase):
 		item.addProp(198, 0xffff, 56, 0xffff)
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]bow_of_pluckeye.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -134,7 +134,7 @@ class TestUniqItem(unittest.TestCase):
 		item.addProp(198, 0xffff, 53, 0xffff)
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]javelin.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -154,7 +154,7 @@ class TestUniqItem(unittest.TestCase):
 
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]claw.d2i"), "wb") as f:
 			self.s.writeBytes(f)

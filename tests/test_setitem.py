@@ -43,7 +43,7 @@ class TestSetItem(unittest.TestCase):
 
 		item.writeStream(self.s)
 		b = self.s.getByteList()
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]griswolds_redemption_scep.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -64,7 +64,7 @@ class TestSetItem(unittest.TestCase):
 		# item.addSetProp(1, 215) #%d%% Enhanced Defense (Based on Character Level)
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]griswolds_valor_helm.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -91,7 +91,7 @@ class TestSetItem(unittest.TestCase):
 		# item.addSetProp(0, 215) #%d%% Enhanced Defense (Based on Character Level)
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]griswolds_heart_plate.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -106,7 +106,7 @@ class TestSetItem(unittest.TestCase):
 
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]griswolds_honor_shield.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -133,7 +133,7 @@ class TestSetItem(unittest.TestCase):
 		# item.addSetProp(0, 188, 24, 0xff) #Skills set X (24-PAL/Combat) +%d
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cleglaws_tooth_swor.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -157,7 +157,7 @@ class TestSetItem(unittest.TestCase):
 		# item.addSetProp(0, 188, 26, 0xff) #Skills set X (26-PAL/DefensiveAura) +%d
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cleglaws_claw_shield.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -175,7 +175,7 @@ class TestSetItem(unittest.TestCase):
 		item.addSetProp(0, 219) #%d%% Enhanced Maximum Damage (Based on Character Level)
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cleglaws_pincers_glove.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -199,7 +199,7 @@ class TestSetItem(unittest.TestCase):
 
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cowkings_leather.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -217,7 +217,7 @@ class TestSetItem(unittest.TestCase):
 		item.addProp(126, 2, 0xff) # Lightning(2) Skills +x
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cowkings_hat.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -232,7 +232,7 @@ class TestSetItem(unittest.TestCase):
 		item.addProp(151, 115, 0xFF)
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cowkings_boots.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -252,7 +252,7 @@ class TestSetItem(unittest.TestCase):
 
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]natalya_helm.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -273,7 +273,7 @@ class TestSetItem(unittest.TestCase):
 		item.addProp(188, 50, 0xff) #Skills set X (24-ASS/MartialArt) +%d
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]natalya_scissors.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -299,7 +299,7 @@ class TestSetItem(unittest.TestCase):
 		# set item prop slot MUST follow game setting strictly!!!
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]natalya_armor.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -317,7 +317,7 @@ class TestSetItem(unittest.TestCase):
 		item.addProp(151, 115, 0xFF)
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]natalya_boots.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -339,7 +339,7 @@ class TestSetItem(unittest.TestCase):
 
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]trangouls_helm.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -364,7 +364,7 @@ class TestSetItem(unittest.TestCase):
 		item.addSetProp(3, 36) # Damage Reduced by x%
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]trangouls_armor.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -384,7 +384,7 @@ class TestSetItem(unittest.TestCase):
 
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]trangouls_trophy.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -400,7 +400,7 @@ class TestSetItem(unittest.TestCase):
 		# set item prop slot MUST follow game setting strictly!!!
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]trangouls_gloves.d2i"), "wb") as f:
 			self.s.writeBytes(f)
@@ -421,8 +421,36 @@ class TestSetItem(unittest.TestCase):
 
 
 		item.writeStream(self.s)
-		self.assertEquals("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
+		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]trangouls_belt.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
+	# Druid
+	def test_Aldurs_watchtower_helm(self):
+		item = SetItem("dr8 ", 0x42)
+
+		item.addProp(16) # defense
+		item.addProp(31) # defense
+		item.addProp(99) # Faster Hit Recovery x%
+		# aura when equipped (151), Holy Shock(118), level (+31)
+		item.addProp(151, 118, 0xFF)
+		# cast level X "Static Field (42)" chance Y on striking"
+		item.addProp(198, 0xffff, 42, 0xffff)
+		item.addProp(330) # +%d to Lightning Skill Damage
+		item.addProp(329) # x% to Fire Skill Damage
+
+		# set item prop slot MUST follow game setting strictly!!!
+		item.addSetProp(1, 214) # +d def (*lv)
+		item.addSetProp(1, 215) # +% def (*lv)
+		item.addSetProp(2, 214) # +d def (*lv)
+		item.addSetProp(2, 215) # +% def (*lv)
+		item.addSetProp(3, 214) # +d def (*lv)
+		item.addSetProp(3, 215) # +% def (*lv)
+
+
+		item.writeStream(self.s)
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+
+		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]aldurs_helm.d2i"), "wb") as f:
+			self.s.writeBytes(f)

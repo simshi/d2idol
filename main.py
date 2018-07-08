@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 from lib import quality
@@ -9,7 +9,7 @@ def lebits2int(bits):
 
 def parseD2I(bytes):
 	bits = ''.join(["{0:08b}".format(ord(v))[::-1] for v in bytes])
-	print bits
+	print(bits)
 	offset = 2*8+1+3
 	bIdentified = lebits2int(bits[offset:offset+1])
 	offset = 27
@@ -65,7 +65,7 @@ def parseD2I(bytes):
 		offset += 12
 		print("SetItem: id={0}(0x{0:x})".format(iSetId))
 	else:
-		print "?", iQuality
+		print("?", iQuality)
 
 	bTimestamp = lebits2int(bits[offset:offset+1])
 	offset += 1

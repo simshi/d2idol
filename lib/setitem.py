@@ -1,6 +1,6 @@
-import itemtype
-import quality
-from itemprops import ItemProps
+from .import itemtype
+from .import quality
+from .itemprops import ItemProps
 
 class SetItem:
 	def __init__(self, code="7ws ", setId=0x53):
