@@ -394,7 +394,7 @@ _propGroups = {
 		19, #+%d to Attack Rating
 		60, #+% life stolen per hit
 		62, #+% mana stolen per hit
-		68, #%d%% Increased Attack Speed
+		93, #%d%% Increased Attack Speed
 		111, #Damage +%d
 		115, #Ignore Target Defense
 		141, #+d Deadly Strike
@@ -411,7 +411,7 @@ _propGroups = {
 		58, #Adds %d poison damage
 		60, #+% life stolen per hit
 		62, #+% mana stolen per hit
-		68, #%d%% Increased Attack Speed
+		93, #%d%% Increased Attack Speed
 		#93, #%d%% Increased Attack Speed
 		#105, #%d%% Faster Cast Rate
 		#108, #Slain Monsters Rest In Peace

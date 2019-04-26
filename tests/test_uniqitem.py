@@ -29,8 +29,11 @@ class TestUniqItem(unittest.TestCase):
 	def test_ring_nagelring(self):
 		item = UniqItem("rin ", 0x78) # Nagelring
 
+		item.addProp(127) # +7 (3 bits) to All Skill Level
+
 		item.addPropGroup("mf")
-		item.addProp(127); # +7 (3 bits) to All Skill Level
+		item.addPropGroup("greed")
+		item.addProp(127) # +7 (3 bits) to All Skill Level
 
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 00 80 00 64", self.s.toHexString()[:7*3-1])
@@ -58,9 +61,9 @@ class TestUniqItem(unittest.TestCase):
 		# SourHarvest in game is "scy ", not sure "hal " would always work!!!
 		item = UniqItem("hal ", 0x32)
 
-		item.addProp(91, 0); # requirment 0-100%
-		item.addProp(23); # +(6bits) min 2 hands dmg
-		item.addProp(24); # +(7bits) max 2 hands dmg
+		item.addProp(91, 0) # requirment 0-100%
+		item.addProp(23) # +(6bits) min 2 hands dmg
+		item.addProp(24) # +(7bits) max 2 hands dmg
 		item.addPropGroup("offense")
 
 		# aura when equipped (151), Holy Shock(118), level (+31)
