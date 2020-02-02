@@ -41,8 +41,8 @@ class TestUniqItem(unittest.TestCase):
 		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]ring_of_nagelring.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
-	def test_tors_of_blinkbats_form(self):
-		item = UniqItem("lea ", 80)
+	def test_tors_of_greyform(self):
+		item = UniqItem("qui ", 79)
 
 		item.addPropGroup("characteristic")
 		item.addPropGroup("mf")
@@ -54,7 +54,7 @@ class TestUniqItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]tors_of_blinkbats_form.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[UniqItem]greyform.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_pole_of_soul_harvest(self):
