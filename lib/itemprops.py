@@ -479,4 +479,3 @@ class ItemProps:
 			stream.append(0xff, 8)
 
 		stream.append(0x1ff, 9)
-

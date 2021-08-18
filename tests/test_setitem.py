@@ -425,32 +425,3 @@ class TestSetItem(unittest.TestCase):
 
 		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]trangouls_belt.d2i"), "wb") as f:
 			self.s.writeBytes(f)
-
-	# Druid
-	def test_Aldurs_watchtower_helm(self):
-		item = SetItem("dr8 ", 0x42)
-
-		item.addProp(16) # defense
-		item.addProp(31) # defense
-		item.addProp(99) # Faster Hit Recovery x%
-		# aura when equipped (151), Holy Shock(118), level (+31)
-		item.addProp(151, 118, 0xFF)
-		# cast level X "Static Field (42)" chance Y on striking"
-		item.addProp(198, 0xffff, 42, 0xffff)
-		item.addProp(330) # +%d to Lightning Skill Damage
-		item.addProp(329) # x% to Fire Skill Damage
-
-		# set item prop slot MUST follow game setting strictly!!!
-		item.addSetProp(1, 214) # +d def (*lv)
-		item.addSetProp(1, 215) # +% def (*lv)
-		item.addSetProp(2, 214) # +d def (*lv)
-		item.addSetProp(2, 215) # +% def (*lv)
-		item.addSetProp(3, 214) # +d def (*lv)
-		item.addSetProp(3, 215) # +% def (*lv)
-
-
-		item.writeStream(self.s)
-		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
-
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]aldurs_helm.d2i"), "wb") as f:
-			self.s.writeBytes(f)
