@@ -13,16 +13,17 @@ class ItemBase:
 		stream.append(0, 3) # unknown
 		stream.append(1, 1) # identified?
 		stream.append(0, 3) # unknown
-		# :1 Diabled item, :1 unk, :1 duplicate item :1 bSocketed, :2 unk, :1 illegal equip, :1 unk
+		# :1 Diabled item, :1 unk, :1 duplicate item
 		stream.append(0, 3)
 		stream.append(self.bSocketed, 1)
+		# :2 unk, :1 illegal equip, :1 unk
 		stream.append(0, 4)
-		# :1 bEar, :1 bStarter Item, :3 unk, :1 bSimple, :1 bEthereal 1: unk(always 1)
 		stream.append(self.bEar, 1)
+		# :1 bStarter Item, :3 unk
 		stream.append(0, 4)
 		stream.append(self.bSimple, 1)
 		stream.append(self.bEthereal, 1)
-		stream.append(1, 1)
+		stream.append(1, 1) # 1: unk(always 1)
 		# :1 bPersonalized :1 unk(always0), :1 bHasRuneWord :5 unk
 		stream.append(0, 8)
 		stream.append(self.wVersion, 10) # :8 version(0x64 = exp)

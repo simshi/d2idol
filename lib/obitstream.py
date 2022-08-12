@@ -26,11 +26,7 @@ class OBitStream():
 		if num_bits < 0 or num_bits > 32:
 			raise ValueError('[0, 32] bits only')
 
-		format_str = '{0:0' + str(num_bits) + 'b}'
-		mask = 0xFFFFFFFF >> (32 - num_bits)
-		bits = format_str.format(value & mask)
-
-		self._v += bits[::-1]
+		self._v += '{0:032b}'.format(value)[::-1][:num_bits]
 
 	def appendString(self, str_value):
 		for v in str_value:
