@@ -412,7 +412,6 @@ _propGroups = {
 		60, #+% life stolen per hit
 		62, #+% mana stolen per hit
 		93, #%d%% Increased Attack Speed
-		#93, #%d%% Increased Attack Speed
 		#105, #%d%% Faster Cast Rate
 		#108, #Slain Monsters Rest In Peace
 		111, #Damage +%d
@@ -433,6 +432,9 @@ _propGroups = {
 		219, #%d%% Enhanced Maximum Damage (Based on Character Level)
 	]
 }
+
+def getPropFromID(id):
+	return arrPropTbl[id]
 
 class ItemProps:
 	def __init__(self):

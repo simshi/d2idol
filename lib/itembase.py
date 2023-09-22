@@ -13,7 +13,7 @@ class ItemBase:
 		stream.append(0, 3) # unknown
 		stream.append(1, 1) # identified?
 		stream.append(0, 3) # unknown
-		# :1 Diabled item, :1 unk, :1 duplicate item
+		# :1 Disabled item, :1 unk, :1 duplicate item
 		stream.append(0, 3)
 		stream.append(self.bSocketed, 1)
 		# :2 unk, :1 illegal equip, :1 unk

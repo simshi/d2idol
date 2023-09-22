@@ -36,6 +36,7 @@ class UniqItem:
 		if self.bClass:
 			stream.append(self.wClass, 11)
 
+		# quality specific
 		stream.append(self.uniqId, 12)
 
 		stream.append(0, 1) # no Timestamp

@@ -66,11 +66,11 @@ class TestUniqItem(unittest.TestCase):
 		item.addProp(24) # +(7bits) max 2 hands dmg
 		item.addPropGroup("offense")
 
-		# aura when equipped (151), Holy Shock(118), level (+31)
-		item.addProp(151, 118, 0xFF)
+		# aura when equipped (151), Meditation(120), level (+31)
+		item.addProp(151, 120, 0xFF)
 
-		# cast level X "Meteor(56)" chance Y on striking"
-		item.addProp(198, 0xffff, 56, 0xffff)
+		# cast level X "Chain Lightning(53)" chance Y on striking"
+		item.addProp(198, 0xffff, 53, 0xffff)
 
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])

@@ -671,9 +671,9 @@ class MiscType:
 
 
 class ArmorType:
-	def __init__(self, code):
+	def __init__(self, code, iSockets):
 		self.config = _armorDict[code]
-		self.iSockets = self.config["gemsockets"]
+		self.iSockets = min(iSockets, self.config["gemsockets"])
 
 	def writeStream(self, stream):
 		stream.append(0xfff, 11) # max def rating
@@ -687,10 +687,10 @@ class ArmorType:
 
 
 class WeaponType:
-	def __init__(self, code):
+	def __init__(self, code, iSockets):
 		self.code = code
 		self.config = _weaponDict[code]
-		self.iSockets = self.config["gemsockets"]
+		self.iSockets = min(iSockets, self.config["gemsockets"])
 
 	def writeStream(self, stream):
 		# if nodurability, zero durability still working, but waste one line
@@ -710,16 +710,25 @@ class WeaponType:
 		return ItemBase(bEthereal=e, bSocketed=v)
 
 
-def createByCode(code):
+def createByCode(code, nSockets=99):
 	if code in _miscDict:
 		return MiscType(code)
 	elif code in _weaponDict:
-		return WeaponType(code)
+		return WeaponType(code, nSockets)
 	elif code in _armorDict:
-		return ArmorType(code)
+		return ArmorType(code, nSockets)
 	else:
 		raise TypeError("Invalid code: '{0}'".format(code))
 
+def iTypeFromCode(code):
+	if code in _miscDict:
+		return "misc"
+	elif code in _weaponDict:
+		return "weapon"
+	elif code in _armorDict:
+		return "armor"
+	else:
+		return "unknown type"
 
 #if __name__ == "__main__":
 # from itertools import chain

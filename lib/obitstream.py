@@ -9,6 +9,9 @@ class OBitStream():
 	def __str__(self):
 		return self._v
 
+	def __len__(self):
+		return len(self._v)
+
 	def getByteList(self):
 		# self._v.chunk(8).map(reversed).map(int(_, 2))
 		def chunk(s, n):
