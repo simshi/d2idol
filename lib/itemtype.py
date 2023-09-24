@@ -722,11 +722,11 @@ def createByCode(code, nSockets=99):
 
 def iTypeFromCode(code):
 	if code in _miscDict:
-		return "misc"
+		return "misc", _miscDict[code]
 	elif code in _weaponDict:
-		return "weapon"
+		return "weapon", _weaponDict[code]
 	elif code in _armorDict:
-		return "armor"
+		return "armor", _armorDict[code]
 	else:
 		return "unknown type"
 

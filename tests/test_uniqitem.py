@@ -58,8 +58,7 @@ class TestUniqItem(unittest.TestCase):
 			self.s.writeBytes(f)
 
 	def test_pole_of_soul_harvest(self):
-		# SourHarvest in game is "scy ", not sure "hal " would always work!!!
-		item = UniqItem("hal ", 0x32)
+		item = UniqItem("scy ", 0x32)
 
 		item.addProp(91, 0) # requirment 0-100%
 		item.addProp(23) # +(6bits) min 2 hands dmg
@@ -69,8 +68,8 @@ class TestUniqItem(unittest.TestCase):
 		# aura when equipped (151), Meditation(120), level (+31)
 		item.addProp(151, 120, 0xFF)
 
-		# cast level X "Chain Lightning(53)" chance Y on striking"
-		item.addProp(198, 0xffff, 53, 0xffff)
+		# cast level X "Meteor(56)" chance Y on striking"
+		item.addProp(198, 0xffff, 56, 0xffff)
 
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])

@@ -10,6 +10,37 @@ import lib.itemprops as itemprops
 def lebits2int(bits):
 	return int(bits[::-1], 2)
 
+def decodeProps(bits, offset):
+	while offset < len(bits):
+		id = lebits2int(bits[offset:offset+9])
+		offset += 9
+		if id == 0x1ff:
+			break
+		prop = getPropFromID(id)
+		print("id:{0},{1}".format(id, prop))
+		i = 0
+		for n in prop[0]:
+			if n == 0:
+				break
+			v = lebits2int(bits[offset:offset+n])
+			offset += n
+
+			ptn = prop[3][i]
+			if ptn == itemprops.ptnRaw:
+				print("\traw={0}".format(v))
+			elif ptn == itemprops.ptnSkill:
+				print("\tskill={0}".format(v))
+			elif ptn == itemprops.ptnSkillTree:
+				print("\tskillTree={0}".format(v))
+			elif ptn == itemprops.ptnClass:
+				print("\tclass={0}".format(v))
+			elif ptn == itemprops.ptnDuration:
+				print("\tduration={0}".format(v))
+			elif ptn == itemprops.ptnTime:
+				print("\ttime={0}".format(v))
+			i += 1
+	return offset
+
 def parseD2I(bytes):
 	bits = ''.join(["{0:08b}".format(ord(v))[::-1] for v in bytes])
 	print(bits)
@@ -72,12 +103,18 @@ def parseD2I(bytes):
 	bClass = lebits2int(bits[offset:offset+1])
 	offset += 1
 	if bClass:
-		iClass = lebits2int(bits[offset:offset+11])
+		wClass = lebits2int(bits[offset:offset+11])
 		offset += 11
-		print("iClass={0}".format(iClass))
+		print("wClass={0}".format(wClass))
+
+	# debug search
+	# for i in range(offset, len(bits)):
+	# 	if bits[i:i+4] == '1010': # 5 sockets
+	# 		print("sockets:", i, lebits2int(bits[i:i+4]))
 
 	if iQuality == quality.High:
 		iQualitySubType = lebits2int(bits[offset:offset+3])
+		offset += 3
 		print("\tsubType={0}(0x{0:x})".format(iQualitySubType))
 	elif iQuality == quality.Unique:
 		iUniqId = lebits2int(bits[offset:offset+12])
@@ -90,39 +127,50 @@ def parseD2I(bytes):
 	else:
 		print("\t?", iQuality)
 
-	# TODO: unclear
-	print("offset before timestamp?", offset, bits[offset:offset+4])
+	if bRuneWord:
+		wRuneWord = lebits2int(bits[offset:offset+16])
+		offset += 16
+		print("runeWord:", wRuneWord, "offset:", offset)
+
 	bTimestamp = lebits2int(bits[offset:offset+1])
 	offset += 1
 	if bTimestamp:
-		# dw3 = lebits2int(bits[offset:offset+32*3])
-		# offset += 32 * 3
-		dw3 = lebits2int(bits[offset:offset+3])
-		offset += 3
+		dw3 = lebits2int(bits[offset:offset+32*3])
+		offset += 32 * 3
 		print("dwTimestamp?=0x{0:x}".format(dw3))
-	else:
-		print("no timestamp?", bits[offset:offset+3])
-		offset += 3
+
+	#TODO: damn!!!
+	if bRuneWord:
+		v = bits[offset:offset+8]
+		offset += 8
+		print("unknown & unsure 8 bits:", v)
 
 	print("offset before type data", offset, bits[offset:offset+8])
-	# TODO: type unmarshell
-	iType = iTypeFromCode(code)
-	print("type:{0}".format(iType))
-	if iType == "weapon":
+	sType, typeCfg = iTypeFromCode(code)
+	print("type: {0} - {1}".format(sType, typeCfg["name"]))
+	if sType == "weapon":
 		print("type specific:", bits[offset:offset+17], offset)
-		max_durability = lebits2int(bits[offset:offset+8])
-		offset += 8
-		if max_durability > 0:
-			durability = lebits2int(bits[offset:offset+9])
-			offset += 9
-			print("\tdurability: {0}/{1}".format(durability, max_durability))
+		if typeCfg["nodurability"]:
+			print("\tdurability: INDESTRUCTIBLE(no durability)")
+			# d = bits[offset:offset+17]
+			# print("v=0x{0:x}".format(lebits2int(d)))
+			# offset += 17
 		else:
-			print("\tdurability: INDESTRUCTIBLE")
+			max_durability = lebits2int(bits[offset:offset+8])
+			offset += 8
+			if max_durability > 0:
+				durability = lebits2int(bits[offset:offset+9])
+				offset += 9
+				print("\tdurability: {0}/{1}".format(durability, max_durability))
+			else:
+				print("\tdurability: INDESTRUCTIBLE")
 
 		# optional quantity
-		# type = getTypeFromCode(code)
+		if typeCfg["maxstack"] > 0:
+			print("\tquantity:", lebits2int(bits[offset:offset+9]))
+			offset += 9
 
-	elif iType == "armor":
+	elif sType == "armor":
 		iDefence = lebits2int(bits[offset:offset+11])
 		offset += 11
 		print("iDefence={0}".format(iDefence))
@@ -151,34 +199,13 @@ def parseD2I(bytes):
 	# 	s = bits[old:offset]
 	# 	print("unread:", s, lebits2int(s))
 	# ops
-	while offset < len(bits):
-		id = lebits2int(bits[offset:offset+9])
-		offset += 9
-		if id == 0x1ff:
-			break
-		prop = getPropFromID(id)
-		print("id:{0},{1}".format(id, prop))
-		i = 0
-		for n in prop[0]:
-			if n == 0:
-				break
-			v = lebits2int(bits[offset:offset+n])
-			offset += n
+	if bRuneWord:
+		print(">>>> props from white:")
+		offset = decodeProps(bits, offset)
+		print(">>>> props from Rune Word:")
 
-			ptn = prop[3][i]
-			if ptn == itemprops.ptnRaw:
-				print("raw={0}".format(v))
-			elif ptn == itemprops.ptnSkill:
-				print("skill={0}".format(v))
-			elif ptn == itemprops.ptnSkillTree:
-				print("skillTree={0}".format(v))
-			elif ptn == itemprops.ptnClass:
-				print("class={0}".format(v))
-			elif ptn == itemprops.ptnDuration:
-				print("duration={0}".format(v))
-			elif ptn == itemprops.ptnTime:
-				print("time={0}".format(v))
-			i += 1
+	offset = decodeProps(bits, offset)
+
 	if offset+pad != len(bits):
 		print("offset:{0}+{1}/{2}".format(offset, pad, len(bits)))
 	else:
