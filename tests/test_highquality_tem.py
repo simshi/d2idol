@@ -32,5 +32,23 @@ class TestHighQualityItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[HighQualityItem]pole_of_soulharvest.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[HighQuality]pole_of_soulharvest.d2i"), "wb") as f:
+			self.s.writeBytes(f)
+
+	def test_Phase_Blade_5(self):
+		item = HighQualityItem("7cr ", 5, 3) # 精神Sprit 塔尔•书尔•欧特•安姆 Tal(7) + Thul(10) + Ort(9) + Amn(11)
+
+		item.addProp(60) # %d%% life stolen
+		item.addProp(62) # %d%% mana stolen
+		#item.addProp(91, 0) # requirment 0-100%
+		item.addProp(135) # #%d%% Chance of Open Wounds
+		item.addProp(136) # %d%% Chance of Crushing Blow
+
+		# aura when equipped (151), Fanaticism(122), level (+31)
+		item.addProp(151, 122, 0xFF)
+
+		item.writeStream(self.s)
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+
+		with open(os.path.join(FILE_ROOT_DIR, "[HighQuality]phase_blade_5.d2i"), "wb") as f:
 			self.s.writeBytes(f)

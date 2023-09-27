@@ -13,7 +13,7 @@ class TestCharm(unittest.TestCase):
 
 	def test_charm_of_greed(self):
 		item = Charm("cm1 ", 0x115) # of greed
-		item.setGfx(1);
+		item.setGfx(1)
 
 		item.addProp(79); # +411%(9 bits) extra gold from monsters
 		item.addProp(80); # +155%(8 bits) Better Chance of Getting Magic Items
@@ -34,6 +34,13 @@ class TestCharm(unittest.TestCase):
 		item.addProp(85); # +x% exp gain
 		item.addProp(127); # +7 (3 bits) to All Skill Level
 		item.addProp(240); # (6 bits) Better Chance of Getting Magic Items (Based on Character Level)
+
+	    # max resist
+		item.addProp(38)
+		item.addProp(40)
+		item.addProp(42)
+		item.addProp(44)
+		item.addProp(46)
 
 		# non-class skill (97), Valkyrie (32), level (+FF)
 		item.addProp(97, 32, 0xFF)

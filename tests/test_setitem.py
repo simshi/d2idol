@@ -45,7 +45,7 @@ class TestSetItem(unittest.TestCase):
 		b = self.s.getByteList()
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]griswolds_redemption_scep.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]griswolds_redemption_scep.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 
@@ -66,7 +66,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]griswolds_valor_helm.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]griswolds_valor_helm.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 
@@ -93,7 +93,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]griswolds_heart_plate.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]griswolds_heart_plate.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_GriswoldsHonor_shield(self):
@@ -108,7 +108,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]griswolds_honor_shield.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]griswolds_honor_shield.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_CleglawsTooth_sword(self):
@@ -135,7 +135,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cleglaws_tooth_swor.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]cleglaws_tooth_swor.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_CleglawsClaw_shield(self):
@@ -159,7 +159,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cleglaws_claw_shield.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]cleglaws_claw_shield.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_CleglawsPincers_glove(self):
@@ -177,7 +177,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cleglaws_pincers_glove.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]cleglaws_pincers_glove.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_CowKings_leather(self):
@@ -201,7 +201,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cowkings_leather.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]cowkings_leather.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_CowKings_hat(self):
@@ -219,7 +219,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cowkings_hat.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]cowkings_hat.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_CowKings_boots(self):
@@ -234,7 +234,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]cowkings_boots.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]cowkings_boots.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	# Assassin
@@ -254,7 +254,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]natalya_helm.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]natalya_helm.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_Natalya_scissors(self):
@@ -275,7 +275,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]natalya_scissors.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]natalya_scissors.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_Natalya_armor(self):
@@ -301,7 +301,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]natalya_armor.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]natalya_armor.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_Natalya_boots(self):
@@ -319,7 +319,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]natalya_boots.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]natalya_boots.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	# Necromancer
@@ -341,7 +341,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]trangouls_helm.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]trangouls_helm.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_TrangOuls_armor(self):
@@ -366,7 +366,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]trangouls_armor.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]trangouls_armor.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_TrangOuls_trophy(self):
@@ -386,7 +386,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]trangouls_trophy.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]trangouls_trophy.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_TrangOuls_gloves(self):
@@ -402,7 +402,7 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]trangouls_gloves.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]trangouls_gloves.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_TrangOuls_belt(self):
@@ -423,5 +423,5 @@ class TestSetItem(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]trangouls_belt.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]trangouls_belt.d2i"), "wb") as f:
 			self.s.writeBytes(f)

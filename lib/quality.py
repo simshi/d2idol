@@ -18,4 +18,4 @@ byName = {
 	"Unique": 7,
 	"Crafted": 8,
 }
-byId = map(lambda t:t[0], sorted(byName.items(), key=lambda t:t[1]))
+byId = [t[0] for t in sorted(byName.items(), key=lambda t:t[1])]

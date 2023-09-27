@@ -23,7 +23,7 @@ class TestSetSigon(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]sigon_gage.glove.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]sigon_gage.glove.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_helm(self):
@@ -43,7 +43,7 @@ class TestSetSigon(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]sigon_visor.helm.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]sigon_visor.helm.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_armor(self):
@@ -58,13 +58,17 @@ class TestSetSigon(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]sigon_shelter.armor.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]sigon_shelter.armor.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_belt(self):
 		item = SetItem("hbl ", 0x27)
 
 		item.addPropGroup("basicdefense")
+		item.addProp(234) # +%d cold absorb (level)
+		item.addProp(235) # +%d fire absorb (level)
+		item.addProp(236) # +%d lightning absorb (level)
+		item.addProp(237) # +%d poison absorb (level)
 
 		item.addSetProp(0, 214) #+%d to Defense (Based on Character Level)
 		item.addSetProp(0, 215) #+%d%% to Defense (Based on Character Level)
@@ -72,7 +76,7 @@ class TestSetSigon(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]sigon_wrap.belt.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]sigon_wrap.belt.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_shield(self):
@@ -92,5 +96,5 @@ class TestSetSigon(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]sigon_guard.shield.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]sigon_guard.shield.d2i"), "wb") as f:
 			self.s.writeBytes(f)

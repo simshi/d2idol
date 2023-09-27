@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 from lib import quality
@@ -42,13 +42,22 @@ def decodeProps(bits, offset):
 	return offset
 
 def parseD2I(bytes):
-	bits = ''.join(["{0:08b}".format(ord(v))[::-1] for v in bytes])
+	bits = ''.join(["{0:08b}".format(v)[::-1] for v in bytes])
 	print(bits)
 	pad = 0
 	for v in bits[-7:]:
 		if v == '0':
 			pad += 1
 	print("pad={0}/{1}".format(pad, len(bits)), bits[-7:])
+
+	# debug search
+	# d = 5
+	# s = 4
+	# v = ('{0:032b}'.format(d))[::-1][:s]
+	# print("searching :{0}-{1},{2}".format(d, 17, v))
+	# for i in range(0, len(bits)):
+	# 	if bits[i:i+4] == v:
+	# 		print("\t", i, lebits2int(bits[i:i+4]))
 
 	offset = 2*8+1+3
 	bIdentified = lebits2int(bits[offset:offset+1])
@@ -107,11 +116,6 @@ def parseD2I(bytes):
 		offset += 11
 		print("wClass={0}".format(wClass))
 
-	# debug search
-	# for i in range(offset, len(bits)):
-	# 	if bits[i:i+4] == '1010': # 5 sockets
-	# 		print("sockets:", i, lebits2int(bits[i:i+4]))
-
 	if iQuality == quality.High:
 		iQualitySubType = lebits2int(bits[offset:offset+3])
 		offset += 3
@@ -129,7 +133,7 @@ def parseD2I(bytes):
 
 	if bRuneWord:
 		wRuneWord = lebits2int(bits[offset:offset+16])
-		offset += 16
+		offset += 7 # TODO: 16 ???
 		print("runeWord:", wRuneWord, "offset:", offset)
 
 	bTimestamp = lebits2int(bits[offset:offset+1])
@@ -139,22 +143,15 @@ def parseD2I(bytes):
 		offset += 32 * 3
 		print("dwTimestamp?=0x{0:x}".format(dw3))
 
-	#TODO: damn!!!
-	if bRuneWord:
-		v = bits[offset:offset+8]
-		offset += 8
-		print("unknown & unsure 8 bits:", v)
-
 	print("offset before type data", offset, bits[offset:offset+8])
 	sType, typeCfg = iTypeFromCode(code)
 	print("type: {0} - {1}".format(sType, typeCfg["name"]))
 	if sType == "weapon":
 		print("type specific:", bits[offset:offset+17], offset)
 		if typeCfg["nodurability"]:
-			print("\tdurability: INDESTRUCTIBLE(no durability)")
-			# d = bits[offset:offset+17]
-			# print("v=0x{0:x}".format(lebits2int(d)))
-			# offset += 17
+			d = bits[offset:offset+8]
+			offset += 17
+			print("\tdurability: INDESTRUCTIBLE(no durability, pad=0x{0:05x})".format(lebits2int(d)))
 		else:
 			max_durability = lebits2int(bits[offset:offset+8])
 			offset += 8

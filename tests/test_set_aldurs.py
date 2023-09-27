@@ -31,7 +31,7 @@ class TestSetAldursWatchtower(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]aldurs_helm.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]aldurs_helm.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_armor_deception(self):
@@ -55,7 +55,7 @@ class TestSetAldursWatchtower(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]aldurs_armor.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]aldurs_armor.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_weapon_rhythm(self):
@@ -78,7 +78,7 @@ class TestSetAldursWatchtower(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]aldurs_weapon.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]aldurs_weapon.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_boots_advance(self):
@@ -95,5 +95,5 @@ class TestSetAldursWatchtower(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 00 c0 00 64", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[SetItem]aldurs_boots.d2i"), "wb") as f:
+		with open(os.path.join(FILE_ROOT_DIR, "[Set]aldurs_boots.d2i"), "wb") as f:
 			self.s.writeBytes(f)# 	item.addProp(16) # defense
