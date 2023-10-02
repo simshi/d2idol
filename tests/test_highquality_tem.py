@@ -38,17 +38,43 @@ class TestHighQualityItem(unittest.TestCase):
 	def test_Phase_Blade_5(self):
 		item = HighQualityItem("7cr ", 5, 3) # 精神Sprit 塔尔•书尔•欧特•安姆 Tal(7) + Thul(10) + Ort(9) + Amn(11)
 
+		item.addProp(17) # #+%d-%d Enhanced Damage
+		item.addProp(19) # +%d to Attack Rating
+		item.addProp(52) # Adds %d-%d magic damage
+		item.addProp(53) # Adds %d magic damage
+		item.addProp(218) # +%d to Maximum Damage (Based on Character Level)
+		item.addProp(219) # %d%% Enhanced Maximum Damage (Based on Character Level)
+
 		item.addProp(60) # %d%% life stolen
 		item.addProp(62) # %d%% mana stolen
 		#item.addProp(91, 0) # requirment 0-100%
+		item.addProp(119) # #%d%% to Attack Rating
 		item.addProp(135) # #%d%% Chance of Open Wounds
 		item.addProp(136) # %d%% Chance of Crushing Blow
 
-		# aura when equipped (151), Fanaticism(122), level (+31)
-		item.addProp(151, 122, 0xFF)
+		# aura when equipped (151), Holy Shock(118), level (+31)
+		item.addProp(151, 118, 0xFF)
 
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[HighQuality]phase_blade_5.d2i"), "wb") as f:
+			self.s.writeBytes(f)
+
+	def test_Sacred_Rondache_4(self):
+		item = HighQualityItem("pac ", 4, 3)
+
+		item.addPropGroup("basicdefense")
+
+		item.addProp(20) # +%d%% CoB
+		# all resist
+		item.addProp(39)
+		item.addProp(41)
+		item.addProp(43)
+		item.addProp(45)
+
+		item.writeStream(self.s)
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+
+		with open(os.path.join(FILE_ROOT_DIR, "[HighQuality]sacred_rondache_4.d2i"), "wb") as f:
 			self.s.writeBytes(f)

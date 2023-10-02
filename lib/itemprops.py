@@ -45,15 +45,15 @@ arrPropTbl=[
 	[[6,0,0,0], 0, "Damage Reduced by %d",	[ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[6,0,0,0], 0, "Magic Damage Reduced by %d",	[ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[8,0,0,0], 0, "Damage Reduced by %d%%",	[ptnRaw,ptnNone,ptnNone,ptnNone]],
-	[[8,0,0,0], 0, "Magic Resist +%d%%",	[ptnRaw,ptnNone,ptnNone,ptnNone]],
+	[[8,0,0,0], 50, "Magic Resist +%d%%",	[ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[5,0,0,0], 0, "+%d%% to Maximum Magic Resist", [ptnRaw,ptnNone,ptnNone,ptnNone]],
-	[[8,0,0,0], 0, "Fire Resist +%d%%", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#39
+	[[8,0,0,0], 50, "Fire Resist +%d%%", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#39
 	[[5,0,0,0], 0, "+%d%% to Maximum Fire Resist",	[ptnRaw,ptnNone,ptnNone,ptnNone]],
-	[[8,0,0,0], 0, "Lightning Resist +%d%%",	[ptnRaw,ptnNone,ptnNone,ptnNone]],
+	[[8,0,0,0], 50, "Lightning Resist +%d%%",	[ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[5,0,0,0], 0, "+%d%% to Maximum Lightning Resist",	[ptnRaw,ptnNone,ptnNone,ptnNone]],
-	[[8,0,0,0], 0, "Cold Resist +%d%%", [ptnRaw,ptnNone,ptnNone,ptnNone]],
+	[[8,0,0,0], 50, "Cold Resist +%d%%", [ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[5,0,0,0], 0, "+%d%% to Maximum Cold Resist", [ptnRaw,ptnNone,ptnNone,ptnNone]],
-	[[8,0,0,0], 0, "Poison Resist +%d%%", [ptnRaw,ptnNone,ptnNone,ptnNone]],
+	[[8,0,0,0], 50, "Poison Resist +%d%%", [ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[5,0,0,0], 0, "+%d%% to Maximum Poison Resist", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#46
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[8,9,0,0], 0, "Adds %d-%d fire damage", [ptnRaw,ptnRaw,ptnNone,ptnNone]],	#48

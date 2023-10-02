@@ -44,6 +44,7 @@ def decodeProps(bits, offset):
 def parseD2I(bytes):
 	bits = ''.join(["{0:08b}".format(v)[::-1] for v in bytes])
 	print(bits)
+	# TODO: if there are gems/runes followed, pad is at the end
 	pad = 0
 	for v in bits[-7:]:
 		if v == '0':
@@ -51,13 +52,13 @@ def parseD2I(bytes):
 	print("pad={0}/{1}".format(pad, len(bits)), bits[-7:])
 
 	# debug search
-	# d = 5
-	# s = 4
-	# v = ('{0:032b}'.format(d))[::-1][:s]
-	# print("searching :{0}-{1},{2}".format(d, 17, v))
-	# for i in range(0, len(bits)):
-	# 	if bits[i:i+4] == v:
-	# 		print("\t", i, lebits2int(bits[i:i+4]))
+	d = 0x4d4a
+	s = 16
+	v = ('{0:032b}'.format(d))[::-1][:s]
+	print("searching :{0}-{1},{2}".format(d, s, v))
+	for i in range(0, len(bits)):
+		if bits[i:i+s] == v:
+			print("\t", i, lebits2int(bits[i:i+s]))
 
 	offset = 2*8+1+3
 	bIdentified = lebits2int(bits[offset:offset+1])
@@ -170,16 +171,16 @@ def parseD2I(bytes):
 	elif sType == "armor":
 		iDefence = lebits2int(bits[offset:offset+11])
 		offset += 11
-		print("iDefence={0}".format(iDefence))
+		print("\tiDefence={0}".format(iDefence))
 
 		iMaxDur = lebits2int(bits[offset:offset+8])
 		offset += 8
 		if iMaxDur > 0:
 			iCurDur = lebits2int(bits[offset:offset+9])
 			offset += 9
-			print("durability={0}/{1}".format(iCurDur, iMaxDur))
+			print("\tdurability={0}/{1}".format(iCurDur, iMaxDur))
 		else:
-			print("Indestructible")
+			print("\tIndestructible")
 
 	# armor or weapon
 	if bSocketed:

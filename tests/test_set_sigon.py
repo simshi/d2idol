@@ -64,11 +64,16 @@ class TestSetSigon(unittest.TestCase):
 	def test_belt(self):
 		item = SetItem("hbl ", 0x27)
 
-		item.addPropGroup("basicdefense")
+		# item.addPropGroup("basicdefense")
+
+		item.addPropGroup("mf")
 		item.addProp(234) # +%d cold absorb (level)
 		item.addProp(235) # +%d fire absorb (level)
 		item.addProp(236) # +%d lightning absorb (level)
 		item.addProp(237) # +%d poison absorb (level)
+
+		# aura when equipped (151), Salvation(125), level (+31)
+		item.addProp(151, 125, 0xFF)
 
 		item.addSetProp(0, 214) #+%d to Defense (Based on Character Level)
 		item.addSetProp(0, 215) #+%d%% to Defense (Based on Character Level)
