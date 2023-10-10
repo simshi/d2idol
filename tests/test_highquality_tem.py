@@ -52,8 +52,9 @@ class TestHighQualityItem(unittest.TestCase):
 		item.addProp(135) # #%d%% Chance of Open Wounds
 		item.addProp(136) # %d%% Chance of Crushing Blow
 
-		# aura when equipped (151), Holy Shock(118), level (+31)
-		item.addProp(151, 118, 0xFF)
+		# 悔恨(greif) is 198 (on striking)
+		# Decrepify(87)
+		item.addProp(195, 0xffff, 87, 0xffff) # %d%% Chance cast %s (level %d) on attack
 
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
@@ -77,4 +78,44 @@ class TestHighQualityItem(unittest.TestCase):
 		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
 
 		with open(os.path.join(FILE_ROOT_DIR, "[HighQuality]sacred_rondache_4.d2i"), "wb") as f:
+			self.s.writeBytes(f)
+
+	def test_Archon_Plate_3(self):
+		item = HighQualityItem("utp ", 3, 3)
+
+		# item.addPropGroup("basicdefense")
+		item.addProp(214) # +%d to Defense (Based on Character Level)
+		item.addProp(215) # %d%% Enhanced Defense (Based on Character Level)
+		item.addProp(3) # +%d to Vitality
+
+		# all resist
+		item.addProp(39)
+		item.addProp(41)
+		item.addProp(43)
+		item.addProp(45)
+
+		# Defiance(104)
+		item.addProp(198, 0xffff, 104, 0xffff) # %d%% Chance cast %s (level %d) on attack
+
+		item.writeStream(self.s)
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+
+		with open(os.path.join(FILE_ROOT_DIR, "superior/archon_plate_3.d2i"), "wb") as f:
+			self.s.writeBytes(f)
+
+	def test_Archon_Plate_4(self):
+		item = HighQualityItem("utp ", 4, 3)
+
+		# item.addPropGroup("basicdefense")
+		item.addProp(214) # +%d to Defense (Based on Character Level)
+		item.addProp(215) # %d%% Enhanced Defense (Based on Character Level)
+		item.addProp(3) # +%d to Vitality
+
+		# Defiance(104)
+		item.addProp(198, 0xffff, 104, 0xffff) # %d%% Chance cast %s (level %d) on attack
+
+		item.writeStream(self.s)
+		self.assertEqual("4a 4d 10 08 c0 00 64", self.s.toHexString()[:7*3-1])
+
+		with open(os.path.join(FILE_ROOT_DIR, "superior/archon_plate_4.d2i"), "wb") as f:
 			self.s.writeBytes(f)
