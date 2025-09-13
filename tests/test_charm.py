@@ -5,6 +5,7 @@ from lib import Charm
 from lib import OBitStream
 from . import FILE_ROOT_DIR
 
+DIR=os.path.join(FILE_ROOT_DIR, 'charm')
 
 class TestCharm(unittest.TestCase):
 	def setUp(self):
@@ -24,23 +25,14 @@ class TestCharm(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 00 80 00 65", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[Charm]of_greed.d2i"), "wb") as f:
+		with open(os.path.join(DIR, "of_greed.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
 	def test_charm_of_skill(self):
 		item = Charm("cm1 ", 0x0f1) # of Skill
 
-		item.addProp(80); # +155%(8 bits) Better Chance of Getting Magic Items
 		item.addProp(85); # +x% exp gain
 		item.addProp(127); # +7 (3 bits) to All Skill Level
-		item.addProp(240); # (6 bits) Better Chance of Getting Magic Items (Based on Character Level)
-
-	    # max resist
-		item.addProp(38)
-		item.addProp(40)
-		item.addProp(42)
-		item.addProp(44)
-		item.addProp(46)
 
 		# non-class skill (97), Valkyrie (32), level (+FF)
 		item.addProp(97, 32, 0xFF)
@@ -56,6 +48,26 @@ class TestCharm(unittest.TestCase):
 		item.writeStream(self.s)
 		self.assertEqual("4a 4d 10 00 80 00 65", self.s.toHexString()[:7*3-1])
 
-		with open(os.path.join(FILE_ROOT_DIR, "[Charm]of_skill_aura_conviction.d2i"), "wb") as f:
+		with open(os.path.join(DIR, "of_skill_aura_conviction.d2i"), "wb") as f:
 			self.s.writeBytes(f)
 
+	def test_charm_of_slaying(self):
+		item = Charm("cm1 ", 0x026)
+
+		# max resist
+		item.addProp(38)
+		item.addProp(40)
+		item.addProp(42)
+		item.addProp(44)
+		item.addProp(46)
+
+		item.addProp(333) # Enenmy resistance Cold
+		item.addProp(334)
+		item.addProp(335)
+		item.addProp(336)
+
+		item.writeStream(self.s)
+		self.assertEqual("4a 4d 10 00 80 00 65", self.s.toHexString()[:7*3-1])
+
+		with open(os.path.join(DIR, "of_slaying.d2i"), "wb") as f:
+			self.s.writeBytes(f)

@@ -16,6 +16,7 @@ class TestHighQualityItem(unittest.TestCase):
 		#item.addProp(91, 0) # requirment 0-100%
 		item.addProp(23) # +(6bits) min 2 hands dmg
 		item.addProp(24) # +(7bits) max 2 hands dmg
+		item.addProp(60) # %d%% life stolen
 		item.addProp(93) # %d%% Increased Attack Speed
 		#item.addPropGroup("offense")
 		item.addProp(135) # #%d%% Chance of Open Wounds
