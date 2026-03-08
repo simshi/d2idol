@@ -210,5 +210,15 @@ def parseD2I(bytes):
 		print("offset:{0}".format(offset))
 
 if __name__ == "__main__":
-	with open(sys.argv[1], "rb") as f:
+	from pathlib import Path
+	import re
+	raw = sys.argv[1]
+	# Git-Bash/MSYS 风格 /d/...  ->  D:/...
+	win = re.sub(r'^/([a-zA-Z])/', r'\1:/', raw)
+	path = Path(win).resolve()
+	print('映射后路径:', path)
+	print('exists:', path.exists())
+
+	# with open(sys.argv[1], "rb") as f:
+	with path.open('rb') as f:
 		parseD2I(f.read())
