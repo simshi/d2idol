@@ -39,13 +39,13 @@ def generate_charm_of_skill():
 	item.addProp(85)
 	# 127: +X to All Skill Levels
 	item.addProp(127)
-	# 97: +X to Valkyrie
+	# 97: Skill Valkyrie +63
 	item.addProp(97, 32, 0xFF)
-	# 97: +X to Teleport
+	# 97: Skill Teleport +63
 	item.addProp(97, 54, 0xFF)
-	# 151: Add Conviction Aura (Level Y) When Equipped
+	# 151: Add Conviction Aura (Level 31) When Equipped
 	item.addProp(151, 123, 0xFF)
-	# 198: cast Lower Resist (level Y, Z% Chance) on striking
+	# 198: cast level 63 Lower Resist 127% Chance on striking
 	item.addProp(198, 0xFFFF, 91, 0xFFFF)
 
 	item.writeStream(s)
@@ -89,9 +89,9 @@ def generate_charm_of_apprentice():
 	s = OBitStream()
 	item = Charm("cm1 ", 0x0AE)
 
-	# 218: +%d to Defense (Based on Character Level)
+	# 218: +63 Defense (Based on Character Level)
 	item.addProp(218)
-	# 219: %d%% Enhanced Defense (Based on Character Level)
+	# 219: +63% Enhanced Defense (Based on Character Level)
 	item.addProp(219)
 	# 224: +%d to Maximum Damage (Based on Character Level)
 	item.addProp(224)

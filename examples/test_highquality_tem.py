@@ -13,19 +13,19 @@ def generate_pole_of_soul_harvest():
 	s = OBitStream()
 	item = HighQualityItem("7s8 ", 4, 3)
 
-	# 23: +1 to 2h Minimum Damage
+	# 23: +63 to 2h Minimum Damage
 	item.addProp(23)
-	# 24: +1 to 2h Maximum Damage
+	# 24: +127 to 2h Maximum Damage
 	item.addProp(24)
-	# 60: 1% Life stolen per hit
+	# 60: 127% Life stolen per hit
 	item.addProp(60)
-	# 93: 1% Faster Hit Recovery
+	# 93: 107% Increased Attack Speed
 	item.addProp(93)
-	# 135: 1% Chance of Crushing Blow
+	# 135: 127% Chance of Crushing Blow
 	item.addProp(135)
-	# 136: 1% Chance of Open Wounds
+	# 136: 127% Chance of Open Wounds
 	item.addProp(136)
-	# 198: cast Hydra (level 53, 100% Chance) on striking
+	# 198: cast level 63 Chain Lightning 127% Chance on striking
 	item.addProp(198, 0xffff, 53, 0xffff)
 
 	item.writeStream(s)
@@ -40,27 +40,27 @@ def generate_phase_blade_5():
 
 	# 17: +1% Enhanced Damage
 	item.addProp(17)
-	# 19: +1 to Attack Rating
+	# 19: +511%-511% Enhanced Damage
 	item.addProp(19)
-	# 52: Adds 1-1 magic damage
+	# 52: Adds 255-511 magic damage
 	item.addProp(52)
-	# 53: Adds 1 magic damage
+	# 53: Adds 511 magic damage
 	item.addProp(53)
-	# 218: +1 to Defense (Based on Character Level)
+	# 218: +63 Defense (Based on Character Level)
 	item.addProp(218)
-	# 219: 1% Enhanced Defense (Based on Character Level)
+	# 219: +63% Enhanced Defense (Based on Character Level)
 	item.addProp(219)
-	# 60: 1% Life stolen per hit
+	# 60: 127% Life stolen per hit
 	item.addProp(60)
-	# 62: 1% Mana stolen per hit
+	# 62: 127% Mana stolen per hit
 	item.addProp(62)
-	# 119: +1 to Monster Defense Per Hit
+	# 119: +491% to Attack Rating
 	item.addProp(119)
-	# 135: 1% Chance of Crushing Blow
+	# 135: 127% Chance of Crushing Blow
 	item.addProp(135)
-	# 136: 1% Chance of Open Wounds
+	# 136: 127% Chance of Open Wounds
 	item.addProp(136)
-	# 195: cast Amplify Damage (level 87, 100% Chance) on attack
+	# 195: cast level 63 Decrepify 127% Chance on attack
 	item.addProp(195, 0xffff, 87, 0xffff)
 
 	item.writeStream(s)
@@ -74,16 +74,10 @@ def generate_sacred_rondache_4():
 	item = HighQualityItem("pac ", 4, 3)
 
 	item.addPropGroup("basicdefense")
-	# 20: 1% Increased Chance of Blocking
+	# 20: 63% Increased Chance of Blocking
 	item.addProp(20)
-	# 39: Fire Resist +1%
-	item.addProp(39)
-	# 41: Lightning Resist +1%
-	item.addProp(41)
-	# 43: Cold Resist +1%
-	item.addProp(43)
-	# 45: Poison Resist +1%
-	item.addProp(45)
+
+	item.addPropGroup("allresist")
 
 	item.writeStream(s)
 
@@ -95,21 +89,17 @@ def generate_archon_plate_3():
 	s = OBitStream()
 	item = HighQualityItem("utp ", 3, 3)
 
-	# 214: +1 to Defense (Based on Character Level)
+	# 214: +63 Defense (Based on Character Level)
 	item.addProp(214)
-	# 215: 1% Enhanced Defense (Based on Character Level)
+	# 215: +63% Enhanced Defense (Based on Character Level)
 	item.addProp(215)
-	# 3: +1 to Vitality
+	# 3: +223 to Dexterity
 	item.addProp(3)
-	
-	# +All Resist (Fire, Lightning, Cold, Poison)
-	item.addProp(39)
-	item.addProp(41)
-	item.addProp(43)
-	item.addProp(45)
 
-	# 198: cast Hydra (level 104, 100% Chance) on striking
-	item.addProp(198, 0xffff, 104, 0xffff)
+	item.addPropGroup("allresist")
+
+	# 151: Add Defiance Aura (Level 31) When Equipped
+	item.addProp(151, 104, 0xFF)
 
 	item.writeStream(s)
 
@@ -121,14 +111,15 @@ def generate_archon_plate_4():
 	s = OBitStream()
 	item = HighQualityItem("utp ", 4, 3)
 
-	# 214: +1 to Defense (Based on Character Level)
+	# 214: +63 Defense (Based on Character Level)
 	item.addProp(214)
-	# 215: 1% Enhanced Defense (Based on Character Level)
+	# 215: +63% Enhanced Defense (Based on Character Level)
 	item.addProp(215)
-	# 3: +1 to Vitality
+	# 3: +223 to Dexterity
 	item.addProp(3)
-	# 198: cast Hydra (level 104, 100% Chance) on striking
-	item.addProp(198, 0xffff, 104, 0xffff)
+
+	# 151: Add Defiance Aura (Level 31) When Equipped
+	item.addProp(151, 104, 0xFF)
 
 	item.writeStream(s)
 
