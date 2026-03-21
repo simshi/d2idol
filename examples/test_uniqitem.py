@@ -27,9 +27,11 @@ def generate_ring_nagelring():
 	s = OBitStream()
 	item = UniqItem("rin ", 0x78)
 
+	# 127: +1 to All Skill Levels
 	item.addProp(127)
 	item.addPropGroup("mf")
 	item.addPropGroup("greed")
+	# 127: +1 to All Skill Levels
 	item.addProp(127)
 
 	item.writeStream(s)
@@ -45,6 +47,7 @@ def generate_torso_of_greyform():
 	item.addPropGroup("characteristic")
 	item.addPropGroup("mf")
 	item.addPropGroup("defense")
+	# 201: cast Weaken (level 92, 100% Chance) when struck
 	item.addProp(201, 0xFFFF, 92, 0xFFFF)
 
 	item.writeStream(s)
@@ -57,11 +60,16 @@ def generate_pole_of_soul_harvest():
 	s = OBitStream()
 	item = UniqItem("scy ", 0x32)
 
+	# 91: Requirements -0%
 	item.addProp(91, 0)
+	# 23: +1 to 2h Minimum Damage
 	item.addProp(23)
+	# 24: +1 to 2h Maximum Damage
 	item.addProp(24)
 	item.addPropGroup("offense")
+	# 151: Add Aura (Level 120) When Equipped
 	item.addProp(151, 120, 0xFF)
+	# 198: cast Hydra (level 56, 100% Chance) on striking
 	item.addProp(198, 0xffff, 56, 0xffff)
 
 	item.writeStream(s)
@@ -74,11 +82,16 @@ def generate_bow_of_kuko_shakaku():
 	s = OBitStream()
 	item = UniqItem("8lb ", 0xbe)
 
+	# 91: Requirements -0%
 	item.addProp(91, 0)
+	# 23: +1 to 2h Minimum Damage
 	item.addProp(23)
+	# 24: +1 to 2h Maximum Damage
 	item.addProp(24)
 	item.addPropGroup("offense")
+	# 151: Add Aura (Level 118) When Equipped
 	item.addProp(151, 118, 0xFF)
+	# 198: cast Hydra (level 56, 100% Chance) on striking
 	item.addProp(198, 0xffff, 56, 0xffff)
 
 	item.writeStream(s)
@@ -91,11 +104,16 @@ def generate_bow_of_pluckeye():
 	s = OBitStream()
 	item = UniqItem("sbb ", 0x3b)
 
+	# 91: Requirements -0%
 	item.addProp(91, 0)
+	# 23: +1 to 2h Minimum Damage
 	item.addProp(23)
+	# 24: +1 to 2h Maximum Damage
 	item.addProp(24)
 	item.addPropGroup("offense")
+	# 151: Add Aura (Level 118) When Equipped
 	item.addProp(151, 118, 0xFF)
+	# 198: cast Hydra (level 56, 100% Chance) on striking
 	item.addProp(198, 0xffff, 56, 0xffff)
 
 	item.writeStream(s)
@@ -108,13 +126,20 @@ def generate_javelin_of_pluckeye():
 	s = OBitStream()
 	item = UniqItem("tsp ", 25)
 
+	# 91: Requirements -0%
 	item.addProp(91, 0)
+	# 23: +1 to 2h Minimum Damage
 	item.addProp(23)
+	# 24: +1 to 2h Maximum Damage
 	item.addProp(24)
 	item.addPropGroup("offense")
+	# 159: +1 to Minimum Throw Damage (Based on Character Level)
 	item.addProp(159)
+	# 160: +1 to Maximum Throw Damage (Based on Character Level)
 	item.addProp(160)
+	# 151: Add Aura (Level 118) When Equipped
 	item.addProp(151, 118, 0xFF)
+	# 198: cast Hydra (level 53, 100% Chance) on striking
 	item.addProp(198, 0xffff, 53, 0xffff)
 
 	item.writeStream(s)
@@ -126,13 +151,19 @@ def generate_javelin_of_pluckeye():
 def generate_claw_of_pluckeye():
 	s = OBitStream()
 	item = UniqItem("skr ", 25)
+	# 91: Requirements -0%
 	item.addProp(91, 0)
 
 	item.addPropGroup("basicoffense")
+	# 21: +1 to Minimum Damage
 	item.addProp(21)
+	# 22: +1 to Maximum Damage
 	item.addProp(22)
+	# 218: +1 to Defense (Based on Character Level)
 	item.addProp(218)
+	# 219: 1% Enhanced Defense (Based on Character Level)
 	item.addProp(219)
+	# 198: cast Hydra (level 53, 100% Chance) on striking
 	item.addProp(198, 0xffff, 53, 0xffff)
 
 	item.writeStream(s)
