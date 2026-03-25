@@ -4,8 +4,8 @@ ptnClass = 3		#%s, GetClassName(val[i])
 ptnSkill = 4		#%s, GetSkillName(val[i])
 ptnSkillTree = 5	#%s, GetSkillTreeName(val[i])
 ptnSkillSet = 6	    #%s, GetSkillSetName(val[i])
-ptnDuration = 7	#%d, val[i]/25
-ptnTime = 8		#%s, GetTimeDesc(val[i])
+ptnDuration = 7		#%d, val[i]/25
+ptnTime = 8			#%s, GetTimeDesc(val[i])
 ptnIgnore = 9		#skip this value
 
 _skillNames = {
@@ -110,9 +110,9 @@ arrPropTbl=[
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[9,0,0,0], 0, "+%d%% Enhanced Defense", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#16
-	[[9,9,0,0], 0, "+%d%%-%d%% Enhanced Damage", [ptnRaw,ptnRaw,ptnNone,ptnNone]],
+	[[9,9,0,0], 0, "+{0}%-{1}% Enhanced Damage", [ptnRaw,ptnRaw,ptnNone,ptnNone]],	#17
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
-	[[10,0,0,0], 0, "+%d to Attack Rating",	[ptnRaw,ptnNone,ptnNone,ptnNone]],
+	[[10,0,0,0], 0, "+{0} to Attack Rating",	[ptnRaw,ptnNone,ptnNone,ptnNone]],	#19
 	[[6,0,0,0], 0, "%d%% Increased Chance of Blocking", [ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[6,0,0,0], 0, "+%d to Minimum Damage",	[ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[7,0,0,0], 0, "+%d to Maximum Damage",	[ptnRaw,ptnNone,ptnNone,ptnNone]],
@@ -145,17 +145,17 @@ arrPropTbl=[
 	[[9,0,0,0], 0, "Adds %d fire damage", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#49
 	[[6,10,0,0], 0, "Adds %d-%d lightning damage", [ptnRaw,ptnRaw,ptnNone,ptnNone]],	#50
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
-	[[8,9,0,0], 0, "Adds %d-%d magic damage", [ptnRaw,ptnRaw,ptnNone,ptnNone]],	#52
-	[[9,0,0,0], 0, "Adds %d magic damage", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#53
+	[[8,9,0,0], 0, "Adds {0}-{1} magic damage", [ptnRaw,ptnRaw,ptnNone,ptnNone]],	#52
+	[[9,0,0,0], 0, "Adds {0} magic damage", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#53
 	[[8,9,8,0], 0, "Adds %d-%d cold damage over %d sec", [ptnRaw,ptnRaw,ptnDuration,ptnNone]],	#54
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[10,10,9,0], 0, "Adds %d-%d poison damage over %d seconds", [ptnRaw,ptnRaw,ptnDuration,ptnNone]],	#57
 	[[10,0,0,0], 0, "Adds %d poison damage", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#58
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
-	[[7,0,0,0], 0, "%d%% Life stolen per hit", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#60
+	[[7,0,0,0], 0, "{0}% Life stolen per hit", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#60
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
-	[[7,0,0,0], 0, "%d%% Mana stolen per hit", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#62
+	[[7,0,0,0], 0, "{0}% Mana stolen per hit", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#62
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
@@ -212,7 +212,7 @@ arrPropTbl=[
 	[[7,0,0,0], 0, "%d%% Target Defense", [ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[7,0,0,0], 0, "Prevent Monster Heal", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[1,0,0,0], 0, "Half Freeze Duration", [ptnNone,ptnNone,ptnNone,ptnNone]],
-	[[9,0,0,0], 20, "%d%% to Attack Rating", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#119
+	[[9,0,0,0], 20, "{0}% to Attack Rating", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#119
 	[[7,0,0,0], 128, "%d to Monster Defense Per Hit", [ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[9,0,0,0], 20, "+%d%% Damage to Demons", [ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[9,0,0,0], 20, "+%d%% Damage to Undead", [ptnRaw,ptnNone,ptnNone,ptnNone]],
@@ -228,8 +228,8 @@ arrPropTbl=[
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[5,0,0,0], 0, "Freezes Target %d", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#134
-	[[7,0,0,0], 0, "%d%% Chance of Open Wounds", [ptnRaw,ptnNone,ptnNone,ptnNone]],
-	[[7,0,0,0], 0, "%d%% Chance of Crushing Blow", [ptnRaw,ptnNone,ptnNone,ptnNone]],
+	[[7,0,0,0], 0, "{0}% Chance of Open Wounds", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#135
+	[[7,0,0,0], 0, "{0}% Chance of Crushing Blow", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#136
 	[[7,0,0,0], 0, "+%d Kick Damage", [ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[7,0,0,0], 0, "+%d to Mana After Each Kill", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#138
 	[[7,0,0,0], 0, "+%d Life after each Demon Kill", [ptnRaw,ptnNone,ptnNone,ptnNone]],
@@ -289,16 +289,16 @@ arrPropTbl=[
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[4,0,0,0], 0, "Adds %d extra sockets to the item.", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#194
-	[[6,10,7,0], 0, "cast level %d %s %d%% Chance on attack", [ptnRaw,ptnSkill,ptnRaw,ptnNone]],	#195
-	[[6,10,7,0], 0, "cast %s (level %d, %d%% Chance) on kill", [ptnSkill,ptnRaw,ptnRaw,ptnNone]],	#196
-	[[6,10,7,0], 0, "cast %s (level %d, %d%% Chance) on death", [ptnSkill,ptnRaw,ptnRaw,ptnNone]],	#197
-	[[6,10,7,0], 0, "cast level %d %s %d%% Chance on striking", [ptnRaw,ptnSkill,ptnRaw,ptnNone]],#198
-	[[6,10,7,0], 0, "cast %s (level %d, %d%% Chance) on level up", [ptnSkill,ptnRaw,ptnRaw,ptnNone]],#199
-	[[6,10,7,0], 0, "+%d%% Chance to cast level %d %s on striking", [ptnRaw,ptnRaw,ptnSkill,ptnNone]],#200 ??
-	[[6,10,7,0], 0, "cast level %d %s %d%% Chance when struck", [ptnRaw,ptnSkill,ptnRaw,ptnNone]],#201
-	[[9,5,7,0], 0, "+%d%% Chance to cast level %d %s when struck", [ptnRaw,ptnRaw,ptnSkill,ptnNone]],#??
-	[[9,5,7,0], 0, "+%d%% Chance to cast level %d %s when struck", [ptnRaw,ptnRaw,ptnSkill,ptnNone]],#203 ??
-	[[6,10,8,8], 0, "%s (level %d, %d/%d Charges)", [ptnSkill,ptnRaw,ptnRaw,ptnRaw]],	#204
+	[[6,10,7,0], 0, "cast level {0} {1} {2}% Chance on attack", [ptnRaw,ptnSkill,ptnRaw,ptnNone]],	#195
+	[[6,10,7,0], 0, "cast {0} (level {1}, {2}% Chance) on kill", [ptnSkill,ptnRaw,ptnRaw,ptnNone]],	#196
+	[[6,10,7,0], 0, "cast {0} (level {1}, {2}% Chance) on death", [ptnSkill,ptnRaw,ptnRaw,ptnNone]],	#197
+	[[6,10,7,0], 0, "cast level {0} {1} {2}% Chance on striking", [ptnRaw,ptnSkill,ptnRaw,ptnNone]],#198
+	[[6,10,7,0], 0, "cast {0} (level {1}, {2}% Chance) on level up", [ptnSkill,ptnRaw,ptnRaw,ptnNone]],#199
+	[[6,10,7,0], 0, "+{0}% Chance to cast level {1} {2} on striking", [ptnRaw,ptnRaw,ptnSkill,ptnNone]],#200 ??
+	[[6,10,7,0], 0, "cast level {0} {1} {2}% Chance when struck", [ptnRaw,ptnSkill,ptnRaw,ptnNone]],#201
+	[[9,5,7,0], 0, "+{0}% Chance to cast level {1} {2} when struck", [ptnRaw,ptnRaw,ptnSkill,ptnNone]],#??
+	[[9,5,7,0], 0, "+{0}% Chance to cast level {1} {2} when struck", [ptnRaw,ptnRaw,ptnSkill,ptnNone]],#203 ??
+	[[6,10,8,8], 0, "{0} (level {1}, {2}/{3} Charges)", [ptnSkill,ptnRaw,ptnRaw,ptnRaw]],	#204
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
 	[[0,0,0,0], 0, "N/A", [ptnNone,ptnNone,ptnNone,ptnNone]],
@@ -312,8 +312,8 @@ arrPropTbl=[
 	[[6,0,0,0], 0, "%d%% Enhanced Defense (Based on Character Level)", [ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[6,0,0,0], 0, "+%d to Life (Based on Character Level)", [ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[6,0,0,0], 0, "+%d to Mana (Based on Character Level)", [ptnRaw,ptnNone,ptnNone,ptnNone]],
-	[[6,0,0,0], 0, "+%d to Maximum Damage (Based on Character Level)", [ptnRaw,ptnNone,ptnNone,ptnNone]],
-	[[6,0,0,0], 0, "%d%% Enhanced Maximum Damage (Based on Character Level)", [ptnRaw,ptnNone,ptnNone,ptnNone]],
+	[[6,0,0,0], 0, "+{0} to Maximum Damage (Based on Character Level)", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#218
+	[[6,0,0,0], 0, "+{0}% Enhanced Maximum Damage (Based on Character Level)", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#219
 	[[6,0,0,0], 0, "+%d to Strength (Based on Character Level)", [ptnRaw,ptnNone,ptnNone,ptnNone]],	#220
 	[[6,0,0,0], 0, "+%d to Dexterity (Based on Character Level)", [ptnRaw,ptnNone,ptnNone,ptnNone]],
 	[[6,0,0,0], 0, "+%d to Energy (Based on Character Level)", [ptnRaw,ptnNone,ptnNone,ptnNone]],
