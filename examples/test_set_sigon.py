@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lib import SetItem
 from lib import OBitStream
 
-DIR = os.path.join("..", "output")
+DIR = os.path.join("..", "output", "set")
 
 
 def generate_sigon_glove():
@@ -25,7 +25,7 @@ def generate_sigon_glove():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Set]sigon_gage.glove.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "sigon_gage.glove.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -45,7 +45,7 @@ def generate_sigon_helm():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Set]sigon_visor.helm.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "sigon_visor.helm.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -60,7 +60,7 @@ def generate_sigon_armor():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Set]sigon_shelter.armor.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "sigon_shelter.armor.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -86,7 +86,7 @@ def generate_sigon_belt():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Set]sigon_wrap.belt.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "sigon_wrap.belt.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -112,7 +112,7 @@ def generate_sigon_shield():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Set]sigon_guard.shield.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "sigon_guard.shield.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 

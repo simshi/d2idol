@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lib import SetItem
 from lib import OBitStream
 
-DIR = os.path.join("..", "output")
+DIR = os.path.join("..", "output", "set")
 
 
 def generate_aldurs_helm_stony_gaze():
@@ -37,7 +37,7 @@ def generate_aldurs_helm_stony_gaze():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Set]aldurs_helm.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "aldurs_helm.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -61,7 +61,7 @@ def generate_aldurs_armor_deception():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Set]aldurs_armor.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "aldurs_armor.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -87,7 +87,7 @@ def generate_aldurs_weapon_rhythm():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Set]aldurs_weapon.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "aldurs_weapon.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -106,7 +106,7 @@ def generate_aldurs_boots_advance():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Set]aldurs_boots.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "aldurs_boots.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 

@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lib import UniqItem
 from lib import OBitStream
 
-DIR = os.path.join("..", "output")
+DIR = os.path.join("..", "output", "unique")
 
 
 def generate_amulet_of_rixots_keen():
@@ -19,7 +19,7 @@ def generate_amulet_of_rixots_keen():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Uniq]amulet_of_rixots_keen.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "amulet_of_rixots_keen.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -36,7 +36,7 @@ def generate_ring_nagelring():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Uniq]ring_of_nagelring.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "ring_of_nagelring.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -52,7 +52,7 @@ def generate_torso_of_greyform():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Uniq]greyform.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "greyform.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -74,7 +74,7 @@ def generate_pole_of_soul_harvest():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Uniq]pole_of_soulharvest.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "pole_of_soulharvest.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -96,7 +96,7 @@ def generate_bow_of_kuko_shakaku():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Uniq]bow_of_kKukoShakaku.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "bow_of_kKukoShakaku.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -118,7 +118,7 @@ def generate_bow_of_pluckeye():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Uniq]bow_of_pluckeye.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "bow_of_pluckeye.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -144,7 +144,7 @@ def generate_javelin_of_pluckeye():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Uniq]javelin.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "javelin.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -168,7 +168,7 @@ def generate_claw_of_pluckeye():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[Uniq]claw.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "claw.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 

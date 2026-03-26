@@ -20,9 +20,13 @@ examples:
 	@echo "Generating unique items..."
 	cd examples && python3 test_uniqitem.py && cd ..
 	@echo "Generating high quality items..."
-	cd examples && python3 test_highquality_tem.py && cd ..
+	cd examples && python3 test_highquality_item.py && cd ..
+	@echo "Generating superior items..."
+	cd examples && python3 test_superior_item.py && cd ..
 	@echo "Generating set items..."
 	cd examples && python3 test_setitem.py && cd ..
 	cd examples && python3 test_set_aldurs.py && cd ..
 	cd examples && python3 test_set_sigon.py && cd ..
+	cd examples && python3 test_set_natalya.py && cd ..
+	cd examples && python3 test_set_trangouls.py && cd ..
 	@echo "All items generated successfully!"

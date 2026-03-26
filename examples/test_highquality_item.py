@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lib import HighQualityItem
 from lib import OBitStream
 
-DIR = os.path.join("..", "output")
+DIR = os.path.join("..", "output", "highquality")
 
 
 def generate_pole_of_soul_harvest():
@@ -30,7 +30,7 @@ def generate_pole_of_soul_harvest():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[HighQuality]pole_of_soulharvest.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "pole_of_soulharvest.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -65,7 +65,7 @@ def generate_phase_blade_5():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[HighQuality]phase_blade_5.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "phase_blade_5.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -81,49 +81,7 @@ def generate_sacred_rondache_4():
 
 	item.writeStream(s)
 
-	with open(os.path.join(DIR, "[HighQuality]sacred_rondache_4.d2i"), "wb") as f:
-		s.writeBytes(f)
-
-
-def generate_archon_plate_3():
-	s = OBitStream()
-	item = HighQualityItem("utp ", 3, 3)
-
-	# 214: +63 Defense (Based on Character Level)
-	item.addProp(214)
-	# 215: +63% Enhanced Defense (Based on Character Level)
-	item.addProp(215)
-	# 3: +223 to Dexterity
-	item.addProp(3)
-
-	item.addPropGroup("allresist")
-
-	# 151: Add Defiance Aura (Level 31) When Equipped
-	item.addProp(151, 104, 0xFF)
-
-	item.writeStream(s)
-
-	with open(os.path.join(DIR, "superior/archon_plate_3.d2i"), "wb") as f:
-		s.writeBytes(f)
-
-
-def generate_archon_plate_4():
-	s = OBitStream()
-	item = HighQualityItem("utp ", 4, 3)
-
-	# 214: +63 Defense (Based on Character Level)
-	item.addProp(214)
-	# 215: +63% Enhanced Defense (Based on Character Level)
-	item.addProp(215)
-	# 3: +223 to Dexterity
-	item.addProp(3)
-
-	# 151: Add Defiance Aura (Level 31) When Equipped
-	item.addProp(151, 104, 0xFF)
-
-	item.writeStream(s)
-
-	with open(os.path.join(DIR, "superior/archon_plate_4.d2i"), "wb") as f:
+	with open(os.path.join(DIR, "sacred_rondache_4.d2i"), "wb") as f:
 		s.writeBytes(f)
 
 
@@ -131,6 +89,4 @@ if __name__ == "__main__":
 	generate_pole_of_soul_harvest()
 	generate_phase_blade_5()
 	generate_sacred_rondache_4()
-	generate_archon_plate_3()
-	generate_archon_plate_4()
 	print("High Quality items generated successfully!")
