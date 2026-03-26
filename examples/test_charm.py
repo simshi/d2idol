@@ -1,12 +1,10 @@
 import os
-import sys
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from lib import Charm
 from lib import OBitStream
 
-DIR = os.path.join("..", "output", "charm")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DIR = os.path.join(ROOT_DIR, "output", "charm")
 
 
 def generate_charm_of_greed():

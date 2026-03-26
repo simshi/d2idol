@@ -1,12 +1,10 @@
-import sys
 import os
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lib import OBitStream
 from lib import HighQualityItem
 
-
-DIR = os.path.join("..", "output", "superior")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DIR = os.path.join(ROOT_DIR, "output", "superior")
 
 
 def generate_archon_plate_3():

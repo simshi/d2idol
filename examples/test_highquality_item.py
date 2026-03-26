@@ -1,12 +1,10 @@
 import os
-import sys
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from lib import HighQualityItem
 from lib import OBitStream
 
-DIR = os.path.join("..", "output", "highquality")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DIR = os.path.join(ROOT_DIR, "output", "highquality")
 
 
 def generate_pole_of_soul_harvest():
