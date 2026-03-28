@@ -147,17 +147,17 @@ class ItemProps:
 	def writeStream(self, stream):
 		for id in sorted(self._props):
 			stream.append(id, 9)
-			stream.append(self._props[id][0], arrPropTbl[id][0][0])
-			stream.append(self._props[id][1], arrPropTbl[id][0][1])
-			stream.append(self._props[id][2], arrPropTbl[id][0][2])
-			stream.append(self._props[id][3], arrPropTbl[id][0][3])
+			stream.append(self._props[id][0], arrPropTbl[id].bits[0])
+			stream.append(self._props[id][1], arrPropTbl[id].bits[1])
+			stream.append(self._props[id][2], arrPropTbl[id].bits[2])
+			stream.append(self._props[id][3], arrPropTbl[id].bits[3])
 
 		for v in self._nonClassSkills:
 			stream.append(97, 9)
-			stream.append(v[0], arrPropTbl[97][0][0])
-			stream.append(v[1], arrPropTbl[97][0][1])
-			stream.append(v[2], arrPropTbl[97][0][2])
-			stream.append(v[3], arrPropTbl[97][0][3])
+			stream.append(v[0], arrPropTbl[97].bits[0])
+			stream.append(v[1], arrPropTbl[97].bits[1])
+			stream.append(v[2], arrPropTbl[97].bits[2])
+			stream.append(v[3], arrPropTbl[97].bits[3])
 
 		for id in sorted(self._all_resistance):
 			stream.append(id, 9)
@@ -172,10 +172,10 @@ def decodeProp(stream) -> Optional[PropResult]:
 		return None
 
 	prop = getPropFromID(id)
-	bits_config = prop[0]
-	base_value = prop[1]
-	format_template = prop[2]
-	ptn_config = prop[3]
+	bits_config = prop.bits
+	base_value = prop.base
+	format_template = prop.fmt
+	ptn_config = prop.ptns
 
 	details: List[PropDetail] = []
 	params = []

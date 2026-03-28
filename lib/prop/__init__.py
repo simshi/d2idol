@@ -5,12 +5,14 @@ from .skill_data import (
 )
 from .prop_table import (
 	Ptn,
+	PropDef,
 	arrPropTbl,
 	getPropFromID,
 )
 
 __all__ = [
 	"Ptn",
+	"PropDef",
 	"arrPropTbl",
 	"getPropFromID",
 	"getSkillName",
