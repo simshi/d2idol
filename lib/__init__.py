@@ -1,4 +1,5 @@
 from .obitstream import OBitStream
+from .ibitstream import IBitStream
 from .itembase import ItemBase
 from .earitem import EarItem
 from .charm import Charm

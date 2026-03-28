@@ -1,36 +1,29 @@
 #!/usr/bin/env python3
 
 import sys
-from lib import quality
+from lib import quality, IBitStream
 from lib.itemprops import getPropFromID
 from lib.itemtype import iTypeFromCode
 import lib.itemprops as itemprops
 
-# print("under construction, please use 'make test'")
 
-
-def lebits2int(bits):
-    return int(bits[::-1], 2)
-
-
-def decodeProps(bits, offset):
-    while offset < len(bits):
-        id = lebits2int(bits[offset:offset+9])
-        offset += 9
+def decodeProps(stream):
+    nProps = 0
+    while not stream.isEnd():
+        id = stream.read(9)
         if id == 0x1ff:
             break
+        nProps += 1
         prop = getPropFromID(id)
         print("id:{0},{1}".format(id, prop))
         params = []
-        base_value = prop[1]  # 获取配置表中的基础值
+        base_value = prop[1]
         i = 0
         for n in prop[0]:
             if n == 0:
                 break
-            v = lebits2int(bits[offset:offset+n])
-            offset += n
+            v = stream.read(n)
 
-            # 减去配置表中的基础值
             if base_value > 0:
                 v -= base_value
 
@@ -57,199 +50,167 @@ def decodeProps(bits, offset):
                 print("\ttime({1})={0}".format(v, n))
             i += 1
 
-        # 尝试使用Python格式化字符串输出
         try:
             if params:
                 formatted = prop[2].format(*params)
                 print("\tformatted: {0}".format(formatted))
         except Exception as e:
             print("\tformat error: {0}".format(e))
-    return offset
+    print("nProps={0}".format(nProps))
 
 
-def parseD2I(bytes):
-    bits = ''.join(["{0:08b}".format(v)[::-1] for v in bytes])
-    print(bits)
-    # TODO: if there are gems/runes followed, pad is at the end
+def parseD2I(data):
+    stream = IBitStream(data)
+    print(str(stream))
     pad = 0
-    for v in bits[-7:]:
+    for v in str(stream)[-7:]:
         if v == '0':
             pad += 1
-    print("pad={0}/{1}".format(pad, len(bits)), bits[-7:])
+    print("pad={0}/{1}".format(pad, len(stream)), str(stream)[-7:])
 
-    # debug search
     d = 0x4d4a
     s = 16
     v = ('{0:032b}'.format(d))[::-1][:s]
     print("searching :{0}-{1},{2}".format(d, s, v))
-    for i in range(0, len(bits)):
-        if bits[i:i+s] == v:
-            print("\t", i, lebits2int(bits[i:i+s]))
+    for i in range(0, len(stream)):
+        if str(stream)[i:i+s] == v:
+            bits = int(str(stream)[i:i+s][::-1], 2)
+            print("\t", i, bits)
 
-    offset = 2*8+1+3
-    bIdentified = lebits2int(bits[offset:offset+1])
-    offset = 27
-    bSocketed = lebits2int(bits[offset:offset+1])
-    offset += 1
+    stream.skip(2*8+1+3)
+    bIdentified = stream.read(1)
+    stream.skip(27 - stream.getOffset())
+    bSocketed = stream.read(1)
     print("bIdentified={0},bSocketed={1}".format(bIdentified, bSocketed))
-    offset += 2 + 1 + 1
-    bEar = lebits2int(bits[offset:offset+1])
-    offset += 1
-    offset += 1 + 3
-    bSimple = lebits2int(bits[offset:offset+1])
-    offset += 1
-    bEthereal = lebits2int(bits[offset:offset+1])
-    offset += 1
+    stream.skip(2 + 1 + 1)
+    bEar = stream.read(1)
+    stream.skip(1 + 3)
+    bSimple = stream.read(1)
+    bEthereal = stream.read(1)
     print("bEar={0},bSimple={1},bEthereal={2}".format(
         bEar, bSimple, bEthereal))
-    offset += 1  # unk47
+    print("offset:", stream.getOffset())
+    stream.skip(1)  # unk47
 
-    bPersonalized = lebits2int(bits[offset:offset+1])
-    offset += 1
+    bPersonalized = stream.read(1)
 
-    offset += 1  # unk51
-    bRuneWord = lebits2int(bits[offset:offset+1])
-    offset += 1
+    stream.skip(1)  # unk51
+    bRuneWord = stream.read(1)
     print("bPersonalized={0},bRune={1}".format(bPersonalized, bRuneWord))
-    offset += 5  # unk51
+    stream.skip(5)
 
-    offset = 76
-    code = ''.join([chr(int(bits[offset:offset+32][i*8:i*8+8][::-1], 2))
-                   for i in range(4)])
-    offset += 32
-    nGems = lebits2int(bits[offset:offset+3])
-    offset += 3
+    stream.skip(76 - stream.getOffset())
+    code = stream.readString(4)
+    nGems = stream.read(3)
     print("code={0},#gems={1}".format(code, nGems))
 
-    guid = lebits2int(bits[offset:offset+32])
-    offset += 32
-    iLevel = lebits2int(bits[offset:offset+7])
-    offset += 7
+    guid = stream.read(32)
+    iLevel = stream.read(7)
     print("guid=0x{0:04x},iLvl={1}".format(guid, iLevel))
 
-    iQuality = lebits2int(bits[offset:offset+4])
-    offset += 4
+    iQuality = stream.read(4)
     print("iQuality={0}-{1}".format(iQuality, quality.byId[iQuality]))
 
-    bVarGfx = lebits2int(bits[offset:offset+1])
-    offset += 1
+    bVarGfx = stream.read(1)
     if bVarGfx:
-        iVarGfx = lebits2int(bits[offset:offset+3])
-        offset += 3
+        iVarGfx = stream.read(3)
         print("iVarGfx={0}".format(iVarGfx))
 
-    bClass = lebits2int(bits[offset:offset+1])
-    offset += 1
+    bClass = stream.read(1)
     if bClass:
-        wClass = lebits2int(bits[offset:offset+11])
-        offset += 11
+        wClass = stream.read(11)
         print("wClass={0}".format(wClass))
 
     if iQuality == quality.High:
-        iQualitySubType = lebits2int(bits[offset:offset+3])
-        offset += 3
+        iQualitySubType = stream.read(3)
         print("\tsubType={0}(0x{0:x})".format(iQualitySubType))
+    elif iQuality == quality.Magic:
+        prefix = stream.read(11)
+        assert prefix == 0, "Magic's prefix must be 0"
+        suffix = stream.read(11)
+        print("\tMagic: suffix={0}(0x{0:x})".format(suffix))
     elif iQuality == quality.Unique:
-        iUniqId = lebits2int(bits[offset:offset+12])
-        offset += 12
+        iUniqId = stream.read(12)
         print("\tUniqItem: id={0}(0x{0:x})".format(iUniqId))
     elif iQuality == quality.PartOfSet:
-        iSetId = lebits2int(bits[offset:offset+12])
-        offset += 12
+        iSetId = stream.read(12)
         print("\tSetItem: id={0}(0x{0:x})".format(iSetId))
     else:
         print("\t?", iQuality)
 
     if bRuneWord:
-        wRuneWord = lebits2int(bits[offset:offset+16])
-        offset += 7  # TODO: 16 ???
-        print("runeWord:", wRuneWord, "offset:", offset)
+        wRuneWord = stream.read(16)
+        stream.skip(7 - 16)
+        print("runeWord:", wRuneWord, "offset:", stream.getOffset())
 
-    bTimestamp = lebits2int(bits[offset:offset+1])
-    offset += 1
+    bTimestamp = stream.read(1)
     if bTimestamp:
-        dw3 = lebits2int(bits[offset:offset+32*3])
-        offset += 32 * 3
+        dw3 = stream.read(32*3)
         print("dwTimestamp?=0x{0:x}".format(dw3))
 
-    print("offset before type data", offset, bits[offset:offset+8])
+    bits = "{0:08b}".format(stream.peek(8))
+    print("offset before type data", stream.getOffset(), bits[::-1])
     sType, typeCfg = iTypeFromCode(code)
     print("type: {0} - {1}".format(sType, typeCfg["name"]))
     if sType == "weapon":
-        print("type specific:", bits[offset:offset+17], offset)
+        print("type specific:", str(stream)[
+              stream.getOffset():stream.getOffset()+17], stream.getOffset())
         if typeCfg["nodurability"]:
-            d = bits[offset:offset+8]
-            offset += 17
-            print("\tdurability: INDESTRUCTIBLE(no durability, pad=0x{0:05x})".format(
-                lebits2int(d)))
+            d = stream.read(8)
+            stream.skip(9)
+            print("\tdurability: INDESTRUCTIBLE(pad=0x{0:x})".format(d))
         else:
-            max_durability = lebits2int(bits[offset:offset+8])
-            offset += 8
+            max_durability = stream.read(8)
             if max_durability > 0:
-                durability = lebits2int(bits[offset:offset+9])
-                offset += 9
+                durability = stream.read(9)
                 print(
                     "\tdurability: {0}/{1}".format(durability, max_durability))
             else:
                 print("\tdurability: INDESTRUCTIBLE")
 
-        # optional quantity
         if typeCfg["maxstack"] > 0:
-            print("\tquantity:", lebits2int(bits[offset:offset+9]))
-            offset += 9
+            print("\tquantity:", stream.read(9))
 
     elif sType == "armor":
-        iDefence = lebits2int(bits[offset:offset+11])
-        offset += 11
+        iDefence = stream.read(11)
         print("\tiDefence={0}".format(iDefence))
 
-        iMaxDur = lebits2int(bits[offset:offset+8])
-        offset += 8
+        iMaxDur = stream.read(8)
         if iMaxDur > 0:
-            iCurDur = lebits2int(bits[offset:offset+9])
-            offset += 9
+            iCurDur = stream.read(9)
             print("\tdurability={0}/{1}".format(iCurDur, iMaxDur))
         else:
             print("\tIndestructible")
 
-    # armor or weapon
     if bSocketed:
-        iSockets = lebits2int(bits[offset:offset+4])
-        offset += 4
+        iSockets = stream.read(4)
         print("\tsockets: {0}".format(iSockets))
 
-    print("offset before props data", offset, bits[offset:offset+9])
-    # debug
-    # old = offset
-    # offset = len(bits)-pad-9-9-7-9-18 # debug
-    # print("offset={0}-{1} before props".format(old, offset))
-    # if old < offset:
-    # 	s = bits[old:offset]
-    # 	print("unread:", s, lebits2int(s))
-    # ops
+    bits = "{0:09b}".format(stream.peek(9))
+    print("offset before props data", stream.getOffset(), bits[::-1])
     if bRuneWord:
         print(">>>> props from white:")
-        offset = decodeProps(bits, offset)
+        decodeProps(stream)
         print(">>>> props from Rune Word:")
 
-    offset = decodeProps(bits, offset)
+    decodeProps(stream)
 
-    if offset+pad != len(bits):
-        print("offset:{0}+{1}/{2}".format(offset, pad, len(bits)))
+    if stream.getOffset()+pad != len(stream):
+        print("offset:{0}+{1}/{2}".format(stream.getOffset(), pad, len(stream)))
     else:
-        print("offset:{0}".format(offset))
+        print("offset:{0}".format(stream.getOffset()))
 
 
 if __name__ == "__main__":
     from pathlib import Path
     import re
     raw = sys.argv[1]
+
     # Git-Bash/MSYS 风格 /d/...  ->  D:/...
     win = re.sub(r'^/([a-zA-Z])/', r'\1:/', raw)
     path = Path(win).resolve()
     print('映射后路径:', path)
     print('exists:', path.exists())
 
-    # with open(sys.argv[1], "rb") as f:
     with path.open('rb') as f:
         parseD2I(f.read())
