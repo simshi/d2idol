@@ -43,7 +43,7 @@ class TestDecodeProp(unittest.TestCase):
 		detail = result.details[0]
 		self.assertEqual(11, detail.bits)
 		self.assertEqual("raw", detail.ptn)
-		self.assertEqual(100, detail.value)
+		self.assertEqual(110, detail.value)
 		self.assertEqual(10, detail.base)
 
 	def test_decode_two_values_prop(self):

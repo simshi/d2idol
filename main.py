@@ -2,6 +2,7 @@
 
 import sys
 from lib import quality, IBitStream
+from lib.character_class import CharacterClass
 from lib.itemprops import decodeProp
 from lib.itemtype import iTypeFromCode
 
@@ -24,6 +25,20 @@ def decodeProps(stream: IBitStream):
                     detail.ptn, detail.bits, detail.value,
                     " ({0})".format(detail.name) if detail.name else ""))
     print("nProps={0}".format(nProps))
+
+
+def parseEar(stream: IBitStream):
+    iClass = stream.read(3)
+    iLevel = stream.read(7)
+    print("iClass={0}({1}),iLvl={2}".format(
+        CharacterClass.from_id(iClass), iClass, iLevel))
+    name = ""
+    while True:
+        c = stream.read(7)
+        if c == 0:
+            break
+        name += chr(c)
+    print("name={0}".format(name))
 
 
 def parseD2I(data):
@@ -60,13 +75,22 @@ def parseD2I(data):
     stream.skip(1)  # unk47
 
     bPersonalized = stream.read(1)
-
     stream.skip(1)  # unk51
     bRuneWord = stream.read(1)
     print("bPersonalized={0},bRune={1}".format(bPersonalized, bRuneWord))
     stream.skip(5)
 
-    stream.skip(76 - stream.getOffset())
+    version = stream.read(10)
+    print("version={0}({1})".format(
+        "expansion" if version == 0x64 else "<unknown>", version))
+
+    stream.skip(18)
+    print("[{0:5d}:] base done".format(stream.getOffset()))
+
+    if bEar:
+        parseEar(stream)
+        return
+
     code = stream.readString(4)
     nGems = stream.read(3)
     print("code={0},#gems={1}".format(code, nGems))

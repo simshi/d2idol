@@ -15,6 +15,8 @@ tests:
 
 .PHONY: examples
 examples:
+	@echo "Generating [ear] items..."
+	@PYTHONPATH=. python3 examples/test_earitem.py
 	@echo "Generating [charm] items..."
 	@PYTHONPATH=. python3 examples/test_charm.py
 	@echo "Generating [unique] items..."
