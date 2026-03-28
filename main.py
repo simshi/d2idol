@@ -8,6 +8,7 @@ from lib.itemtype import iTypeFromCode
 
 
 def decodeProps(stream: IBitStream):
+    print("<{0:5d}> decode props:".format(stream.getOffset()))
     nProps = 0
     while not stream.isEnd():
         result = decodeProp(stream)
@@ -85,7 +86,7 @@ def parseD2I(data):
         "expansion" if version == 0x64 else "<unknown>", version))
 
     stream.skip(18)
-    print("[{0:5d}:] base done".format(stream.getOffset()))
+    print("<{0:5d}> base done".format(stream.getOffset()))
 
     if bEar:
         parseEar(stream)
@@ -140,7 +141,7 @@ def parseD2I(data):
         print("dwTimestamp?=0x{0:x}".format(dw3))
 
     bits = "{0:08b}".format(stream.peek(8))
-    print("offset before type data", stream.getOffset(), bits[::-1])
+    print("<{0:5d}> before type data".format(stream.getOffset()), bits[::-1])
     sType, typeCfg = iTypeFromCode(code)
     print("type: {0} - {1}".format(sType, typeCfg["name"]))
     if sType == "weapon":
@@ -178,7 +179,14 @@ def parseD2I(data):
         print("\tsockets: {0}".format(iSockets))
 
     bits = "{0:09b}".format(stream.peek(9))
-    print("offset before props data", stream.getOffset(), bits[::-1])
+    print("<{0:5d}> before props data".format(stream.getOffset()), bits[::-1])
+
+    setBonusFlags = []
+    if iQuality == quality.PartOfSet:
+        for i in range(5):
+            setBonusFlags.append(stream.read(1))
+        print("Set Bonus Flags:", setBonusFlags)
+
     if bRuneWord:
         print(">>>> props from white:")
         decodeProps(stream)
@@ -186,10 +194,17 @@ def parseD2I(data):
 
     decodeProps(stream)
 
-    if stream.getOffset()+pad != len(stream):
-        print("offset:{0}+{1}/{2}".format(stream.getOffset(), pad, len(stream)))
+    if iQuality == quality.PartOfSet:
+        for i, flag in enumerate(setBonusFlags):
+            if flag:
+                print(">>>> Set Bonus {0}:".format(i))
+                decodeProps(stream)
+
+    offset = stream.getOffset()
+    if offset+pad != len(stream):
+        print("<{0:5d}>[ERROR]{1}/{2}".format(offset, pad, len(stream)))
     else:
-        print("offset:{0}".format(stream.getOffset()))
+        print("<{0:5d}> done".format(offset))
 
 
 if __name__ == "__main__":
