@@ -72,8 +72,8 @@ def parseD2I(data):
     bEthereal = stream.read(1)
     print("bEar={0},bSimple={1},bEthereal={2}".format(
         bEar, bSimple, bEthereal))
-    print("offset:", stream.getOffset())
     stream.skip(1)  # unk47
+    print("<{0:5d}> after unk47".format(stream.getOffset()))
 
     bPersonalized = stream.read(1)
     stream.skip(1)  # unk51
@@ -83,7 +83,7 @@ def parseD2I(data):
 
     version = stream.read(10)
     print("version={0}({1})".format(
-        "expansion" if version == 0x64 else "<unknown>", version))
+        "Expansion" if version == 0x64 else "<unknown>", version))
 
     stream.skip(18)
     print("<{0:5d}> base done".format(stream.getOffset()))
