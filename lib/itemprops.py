@@ -1,3 +1,23 @@
+from dataclasses import dataclass
+from typing import List, Optional
+
+
+@dataclass
+class PropDetail:
+	bits: int
+	ptn: str
+	value: int
+	base: Optional[int] = None
+	name: Optional[str] = None
+
+
+@dataclass
+class PropResult:
+	id: int
+	formatted: Optional[str]
+	details: List[PropDetail]
+
+
 ptnNone = 1
 ptnRaw = 2			#%d, val[i]
 ptnClass = 3		#%s, GetClassName(val[i])
@@ -572,3 +592,97 @@ class ItemProps:
 			stream.append(0xff, 8)
 
 		stream.append(0x1ff, 9)
+
+
+def decodeProp(stream) -> Optional[PropResult]:
+	id = stream.read(9)
+	if id == 0x1ff:
+		return None
+
+	prop = getPropFromID(id)
+	bits_config = prop[0]
+	base_value = prop[1]
+	format_template = prop[2]
+	ptn_config = prop[3]
+
+	details: List[PropDetail] = []
+	params = []
+
+	for i, n in enumerate(bits_config):
+		if n == 0:
+			break
+
+		raw_value = stream.read(n)
+		value = raw_value
+
+		if base_value > 0:
+			value = raw_value - base_value
+
+		ptn = ptn_config[i]
+		detail_base = base_value if base_value > 0 else None
+
+		detail_name = None
+		if ptn == ptnRaw:
+			params.append(value)
+		elif ptn == ptnSkill:
+			skill_name = getSkillName(value)
+			params.append(skill_name)
+			detail_name = skill_name
+		elif ptn == ptnSkillTree:
+			tree_name = getSkillTreeName(value)
+			params.append(tree_name)
+			detail_name = tree_name
+		elif ptn == ptnSkillSet:
+			set_name = getSkillSetName(value)
+			params.append(set_name)
+			detail_name = set_name
+		elif ptn == ptnClass:
+			params.append(value)
+		elif ptn == ptnDuration:
+			params.append(value)
+		elif ptn == ptnTime:
+			params.append(value)
+		elif ptn == ptnNone:
+			pass
+
+		details.append(PropDetail(
+			bits=n,
+			ptn=_ptnName(ptn),
+			value=raw_value,
+			base=detail_base,
+			name=detail_name,
+		))
+
+	formatted = None
+	if format_template:
+		if params:
+			try:
+				if "{0" in format_template:
+					formatted = format_template.format(*params)
+				else:
+					formatted = format_template % tuple(params)
+			except Exception:
+				formatted = format_template
+		else:
+			formatted = format_template
+
+	return PropResult(
+		id=id,
+		formatted=formatted,
+		details=details,
+	)
+
+
+def _ptnName(ptn):
+	names = {
+		ptnNone: "none",
+		ptnRaw: "raw",
+		ptnClass: "class",
+		ptnSkill: "skill",
+		ptnSkillTree: "skill_tree",
+		ptnSkillSet: "skill_set",
+		ptnDuration: "duration",
+		ptnTime: "time",
+		ptnIgnore: "ignore",
+	}
+	return names.get(ptn, "unknown")

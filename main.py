@@ -2,60 +2,27 @@
 
 import sys
 from lib import quality, IBitStream
-from lib.itemprops import getPropFromID
+from lib.itemprops import decodeProp
 from lib.itemtype import iTypeFromCode
-import lib.itemprops as itemprops
 
 
-def decodeProps(stream):
+def decodeProps(stream: IBitStream):
     nProps = 0
     while not stream.isEnd():
-        id = stream.read(9)
-        if id == 0x1ff:
+        result = decodeProp(stream)
+        if result is None:
             break
         nProps += 1
-        prop = getPropFromID(id)
-        print("id:{0},{1}".format(id, prop))
-        params = []
-        base_value = prop[1]
-        i = 0
-        for n in prop[0]:
-            if n == 0:
-                break
-            v = stream.read(n)
-
-            if base_value > 0:
-                v -= base_value
-
-            ptn = prop[3][i]
-            if ptn == itemprops.ptnRaw:
-                params.append(v)
-                print("\traw({1})={0}".format(v, n))
-            elif ptn == itemprops.ptnSkill:
-                skill_name = itemprops.getSkillName(v)
-                params.append(skill_name)
-                print("\tskill({1})={0} ({2})".format(v, n, skill_name))
-            elif ptn == itemprops.ptnSkillTree:
-                tree_name = itemprops.getSkillTreeName(v)
-                params.append(tree_name)
-                print("\tskillTree({1})={0} ({2})".format(v, n, tree_name))
-            elif ptn == itemprops.ptnClass:
-                params.append(v)
-                print("\tclass({1})={0}".format(v, n))
-            elif ptn == itemprops.ptnDuration:
-                params.append(v)
-                print("\tduration({1})={0}".format(v, n))
-            elif ptn == itemprops.ptnTime:
-                params.append(v)
-                print("\ttime({1})={0}".format(v, n))
-            i += 1
-
-        try:
-            if params:
-                formatted = prop[2].format(*params)
-                print("\tformatted: {0}".format(formatted))
-        except Exception as e:
-            print("\tformat error: {0}".format(e))
+        print("[{0:4d}]".format(result.id), "{0}".format(
+            result.formatted) if result.formatted else "")
+        for detail in result.details:
+            if detail.base and detail.base > 0:
+                print("\t{0}({1})={2}-{3}".format(detail.ptn,
+                      detail.bits, detail.value, detail.base))
+            else:
+                print("\t{0}({1})={2}{3}".format(
+                    detail.ptn, detail.bits, detail.value,
+                    " ({0})".format(detail.name) if detail.name else ""))
     print("nProps={0}".format(nProps))
 
 
