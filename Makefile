@@ -8,13 +8,14 @@ MAKEFLAGS+=-r
 all: tests
 
 clean:
-	@find output/ -name '*.d2i' -exec rm {} \;
+	@rm -rf output/*
 
 tests:
 	python3 -m unittest discover
 
 .PHONY: examples
 examples:
+	@mkdir -p output/{ear,charm,unique,highquality,superior,set}
 	@echo "Generating [ear] items..."
 	@PYTHONPATH=. python3 examples/test_earitem.py
 	@echo "Generating [charm] items..."
