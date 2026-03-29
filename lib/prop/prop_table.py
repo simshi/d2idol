@@ -21,10 +21,10 @@ PropDef = namedtuple('PropDef', ['bits', 'base', 'fmt', 'ptns'])
 
 # fmt: off
 arrPropTbl=[
-        PropDef([8,0,0,0], 32, "+%d to Strength", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
-        PropDef([7,0,0,0], 32, "+%d to Energy", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
-        PropDef([7,0,0,0], 32, "+%d to Dexterity", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
-        PropDef([7,0,0,0], 32, "+%d to Vitality", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
+        PropDef([8,0,0,0], 32, "+%d to Strength", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]), # 0
+        PropDef([7,0,0,0], 32, "+%d to Energy", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]), # 1
+        PropDef([7,0,0,0], 32, "+%d to Dexterity", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]), # 2
+        PropDef([7,0,0,0], 32, "+%d to Vitality", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]), # 3
         PropDef([0,0,0,0], 0, "N/A", [Ptn.NONE,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([0,0,0,0], 0, "N/A", [Ptn.NONE,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([0,0,0,0], 0, "N/A", [Ptn.NONE,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
@@ -32,7 +32,7 @@ arrPropTbl=[
         PropDef([0,0,0,0], 0, "N/A", [Ptn.NONE,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([8,0,0,0], 32, "+%d to Mana", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([0,0,0,0], 0, "N/A", [Ptn.NONE,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
-        PropDef([8,0,0,0], 32, "+%d to Maximum Stamina", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
+        PropDef([8,0,0,0], 32, "+%d to Maximum Stamina", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]), # 11
         PropDef([0,0,0,0], 0, "N/A", [Ptn.NONE,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([0,0,0,0], 0, "N/A", [Ptn.NONE,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([0,0,0,0], 0, "N/A", [Ptn.NONE,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
@@ -137,7 +137,7 @@ arrPropTbl=[
         PropDef([7,0,0,0], 0, "Hit Blinds Target +%d", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([6,0,0,0], 0, "%d%% Damage Taken Goes to Mana", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([1,0,0,0], 0, "Ignore Target Defense", [Ptn.NONE,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#115
-        PropDef([7,0,0,0], 0, "%d%% Target Defense", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
+        PropDef([7,0,0,0], 254, "%d%% Target Defense", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([7,0,0,0], 0, "Prevent Monster Heal", [Ptn.NONE,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([1,0,0,0], 0, "Half Freeze Duration", [Ptn.NONE,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([9,0,0,0], 20, "{0}% to Attack Rating", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#119
@@ -167,9 +167,9 @@ arrPropTbl=[
         PropDef([7,0,0,0], 0, "%d Fire Absorb", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([7,0,0,0], 0, "Lightning Absorb %d%%", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([7,0,0,0], 0, "%d Lightning Absorb", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
-        PropDef([7,0,0,0], 0, "Magic Absorb %d%%", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
+        PropDef([7,0,0,0], 0, "Magic Absorb %d%%", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]), #146
         PropDef([7,0,0,0], 0, "%d Magic Absorb", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
-        PropDef([7,0,0,0], 0, "Cold Absorb %d%%", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
+        PropDef([7,0,0,0], 0, "Cold Absorb %d%%", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]), #148
         PropDef([7,0,0,0], 0, "%d Cold Absorb", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),
         PropDef([7,0,0,0], 0, "Slows Target by %d%%", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#150
         PropDef([9,5,0,0], 0, "Add %s Aura (Level %d) When Equipped", [Ptn.SKILL,Ptn.RAW,Ptn.NONE,Ptn.NONE]),	#151
@@ -355,10 +355,10 @@ arrPropTbl=[
         PropDef([9,0,0,0], 50, "+%d to Lightning Skill Damage", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#330
         PropDef([9,0,0,0], 50, "+%d to Cold Skill Damage", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#331
         PropDef([9,0,0,0], 50, "+%d to Poison Skill Damage", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#332
-        PropDef([8,0,0,0], 0, "%d%% to Enemy Cold Resistance", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#333
-        PropDef([8,0,0,0], 0, "%d%% to Enemy Fire Resistance", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#334
-        PropDef([8,0,0,0], 0, "%d%% to Enemy Lightning Resistance", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#335
-        PropDef([8,0,0,0], 0, "%d%% to Enemy Poison Resistance", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#336
+        PropDef([8,0,0,0], 510, "%d%% to Enemy Fire Resistance", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#333
+        PropDef([8,0,0,0], 510, "%d%% to Enemy Lightning Resistance", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#334
+        PropDef([8,0,0,0], 510, "%d%% to Enemy Cold Resistance", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#335
+        PropDef([8,0,0,0], 510, "%d%% to Enemy Poison Resistance", [Ptn.RAW,Ptn.NONE,Ptn.NONE,Ptn.NONE]),	#336
 ]
 # fmt: on
 
